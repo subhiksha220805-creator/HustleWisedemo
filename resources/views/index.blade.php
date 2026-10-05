@@ -46,14 +46,21 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#courses" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
                         <ul class="dropdown-menu dropdown-menu-end course-nav-menu" aria-labelledby="coursesDropdown">
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'public-speaking') }}"><i class="bi bi-mic-fill"></i><span><strong>Public Speaking</strong><small>K to 12 · Build confident voices</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'spoken-english') }}"><i class="bi bi-chat-dots-fill"></i><span><strong>Spoken English</strong><small>K to 12 &amp; adults · Speak fluently</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'creative-writing') }}"><i class="bi bi-pencil-square"></i><span><strong>Creative Writing</strong><small>K to 12 · Create stories</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'hustlewise-english') }}"><i class="bi bi-book-half"></i><span><strong>HustleWise English</strong><small>K to 12 · Read, write and grow</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'maths') }}"><i class="bi bi-calculator-fill"></i><span><strong>Maths</strong><small>K to 12 &amp; adults · Think logically</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'coding') }}"><i class="bi bi-code-slash"></i><span><strong>Coding</strong><small>K to 12 &amp; adults · Make projects</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'music') }}"><i class="bi bi-music-note-beamed"></i><span><strong>Music</strong><small>Explore rhythm and creativity</small></span></a></li>
-                            <li><a class="dropdown-item" href="{{ route('courses.show', 'business-english') }}"><i class="bi bi-briefcase-fill"></i><span><strong>Business English</strong><small>Adults · Communicate at work</small></span></a></li>
+                            @foreach ([
+                                'public-speaking' => ['bi-mic-fill', 'K to 12 · Build confident voices', 'Public Speaking'],
+                                'spoken-english' => ['bi-chat-dots-fill', 'K to 12 & adults · Speak fluently', 'Spoken English'],
+                                'creative-writing' => ['bi-pencil-square', 'K to 12 · Create stories', 'Creative Writing'],
+                                'hustlewise-english' => ['bi-book-half', 'K to 12 · Read, write and grow', 'HustleWise English'],
+                                'maths' => ['bi-calculator-fill', 'K to 12 & adults · Think logically', 'Maths'],
+                                'coding' => ['bi-code-slash', 'K to 12 & adults · Make projects', 'Coding'],
+                                'music' => ['bi-music-note-beamed', 'Explore rhythm and creativity', 'Music'],
+                                'business-english' => ['bi-briefcase-fill', 'Adults · Communicate at work', 'Business English'],
+                            ] as $courseSlug => [$courseIcon, $courseAudience, $defaultCourseTitle])
+                                @php($courseEdit = $courseOverrides[$courseSlug] ?? [])
+                                @if ($courseEdit['is_active'] ?? true)
+                                    <li><a class="dropdown-item" href="{{ route('courses.show', $courseSlug) }}"><i class="bi {{ $courseEdit['icon'] ?? $courseIcon }}"></i><span><strong>{{ $courseEdit['title'] ?? $defaultCourseTitle }}</strong><small>{{ $courseEdit['subtitle'] ?? $courseAudience }}</small></span></a></li>
+                                @endif
+                            @endforeach
                             <li><a class="dropdown-item course-menu-all" href="#courses">Explore all courses <i class="bi bi-arrow-down-right"></i></a></li>
                         </ul>
                     </li>
@@ -77,6 +84,12 @@
                         <a href="{{ route('demo.book') }}"
                             class="btn btn-orange">
                             Book your free demo
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="{{ route('admin.login') }}"
+                            class="btn btn-outline-secondary">
+                            Admin Login
                         </a>
                     </li>
                 </ul>
@@ -224,7 +237,7 @@
                             z-index:2;
                          ">
 
-                        <img src="{{ secure_asset('home-learning-group.png') }}"
+                        <img src="/home-learning-group.png"
                              class="img-fluid rounded-4"
                              alt="Teacher helping students learn together in a classroom">
 
@@ -322,7 +335,7 @@
 
             <div class="col-lg-6">
 
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+                <img src="/images/classroom.jpg"
                     class="img-fluid rounded-4 shadow"
                     alt="Teacher helping children learn">
 
@@ -434,23 +447,23 @@
                 </p>
             </div>
             <div class="row g-4">
+                @php($courseEdit = $courseOverrides['public-speaking'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <!-- PUBLIC SPEAKING -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="public_speaking.jpg"
+                        <img src="{{ $courseEdit['image'] ?? 'public_speaking.jpg' }}"
                             class="card-img-top"
-                            alt="Public Speaking">
+                            alt="{{ $courseEdit['title'] ?? 'Public Speaking' }}">
                         <div class="card-body p-4">
                           <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-mic-fill"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-mic-fill' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                Public Speaking
+                                {{ $courseEdit['title'] ?? 'Public Speaking' }}
                             </h3>
                             <p class="text-secondary">
-                                Build confidence, master body language,
-                                and learn to communicate effectively in front of
-                                any audience.
+                                {{ $courseEdit['description'] ?? 'Build confidence, master body language, and learn to communicate effectively in front of any audience.' }}
                             </p>
                             <a href="{{ route('courses.show', 'public-speaking') }}"
                                 class="learn-link">
@@ -459,22 +472,24 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @php($courseEdit = $courseOverrides['creative-writing'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <!-- CREATIVE WRITING -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="creative_writing.jpg"
+                        <img src="{{ $courseEdit['image'] ?? 'creative_writing.jpg' }}"
                             class="card-img-top"
-                            alt="Creative Writing">
+                            alt="{{ $courseEdit['title'] ?? 'Creative Writing' }}">
                         <div class="card-body p-4">
                             <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-pencil-square"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-pencil-square' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                Creative Writing
+                                {{ $courseEdit['title'] ?? 'Creative Writing' }}
                             </h3>
                             <p class="text-secondary">
-                                Unleash your imagination, craft compelling
-                                stories, and develop your unique writing voice.
+                                {{ $courseEdit['description'] ?? 'Unleash your imagination, craft compelling stories, and develop your unique writing voice.' }}
                             </p>
                             <a href="{{ route('courses.show', 'creative-writing') }}"
                                 class="learn-link">
@@ -483,23 +498,24 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @php($courseEdit = $courseOverrides['coding'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <!-- CODING -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=600&q=80"
+                        <img src="{{ $courseEdit['image'] ?? '/images/courses/coding-card.jpg' }}"
                             class="card-img-top"
-                            alt="Coding">
+                            alt="{{ $courseEdit['title'] ?? 'Coding' }}">
                         <div class="card-body p-4">
                             <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-code-slash"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-code-slash' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                Coding
+                                {{ $courseEdit['title'] ?? 'Coding' }}
                             </h3>
                             <p class="text-secondary">
-                                Learn the basics of programming, develop
-                                problem-solving skills, and build your own
-                                applications.
+                                {{ $courseEdit['description'] ?? 'Learn the basics of programming, develop problem-solving skills, and build your own applications.' }}
                             </p>
                             <a href="{{ route('courses.show', 'coding') }}"
                                 class="learn-link">
@@ -508,23 +524,24 @@
                        </div>
                     </div>
                 </div>
+                @endif
                 <!-- HUSTLE WISE ENGLISH -->
+                @php($courseEdit = $courseOverrides['hustlewise-english'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="hustle_wise_english.jpg"
+                        <img src="{{ $courseEdit['image'] ?? 'hustle_wise_english.jpg' }}"
                             class="card-img-top"
-                            alt="HustleWise English Programme">
+                            alt="{{ $courseEdit['title'] ?? 'HustleWise English Programme' }}">
                         <div class="card-body p-4">
                             <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-book-half"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-book-half' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                HustleWise English
+                                {{ $courseEdit['title'] ?? 'HustleWise English' }}
                             </h3>
                             <p class="text-secondary">
-                                Our signature comprehensive English programme
-                                designed to enhance reading, writing, and
-                                comprehension.
+                                {{ $courseEdit['description'] ?? 'Our signature comprehensive English programme designed to enhance reading, writing, and comprehension.' }}
                             </p>
                             <a href="{{ route('courses.show', 'hustlewise-english') }}"
                                 class="learn-link">
@@ -533,23 +550,24 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @php($courseEdit = $courseOverrides['maths'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <!-- MATHS -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=600&q=80"
+                        <img src="{{ $courseEdit['image'] ?? '/images/courses/maths-card.jpg' }}"
                             class="card-img-top"
-                            alt="Maths">
+                            alt="{{ $courseEdit['title'] ?? 'Maths' }}">
                         <div class="card-body p-4">
                             <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-calculator-fill"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-calculator-fill' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                Maths
+                                {{ $courseEdit['title'] ?? 'Maths' }}
                             </h3>
                             <p class="text-secondary">
-                                Master numbers, algebra, geometry, and build
-                                strong logical reasoning skills through
-                                interactive lessons.
+                                {{ $courseEdit['description'] ?? 'Master numbers, algebra, geometry, and build strong logical reasoning skills through interactive lessons.' }}
                             </p>
                             <a href="{{ route('courses.show', 'maths') }}"
                                 class="learn-link">
@@ -558,22 +576,24 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- BUSINESS ENGLISH -->
+                @php($courseEdit = $courseOverrides['business-english'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80"
+                        <img src="{{ $courseEdit['image'] ?? '/images/courses/business-english-card.jpg' }}"
                             class="card-img-top"
-                            alt="Business English">
+                            alt="{{ $courseEdit['title'] ?? 'Business English' }}">
                         <div class="card-body p-4">
                             <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-briefcase-fill"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-briefcase-fill' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                Business English
+                                {{ $courseEdit['title'] ?? 'Business English' }}
                             </h3>
                             <p class="text-secondary">
-                                Learn professional communication, email writing,
-                                and vocabulary for the modern workplace.
+                                {{ $courseEdit['description'] ?? 'Learn professional communication, email writing, and vocabulary for the modern workplace.' }}
                             </p>
                             <a href="{{ route('courses.show', 'business-english') }}"
                                 class="learn-link">
@@ -582,25 +602,27 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                @php($courseEdit = $courseOverrides['music'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <!-- MUSIC -->
                 <div class="col-md-6 col-lg-4">
                    <div class="card subject-card h-100 border-0 shadow-sm">
-                   <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=600&q=80"
+                   <img src="{{ $courseEdit['image'] ?? '/images/courses/music-card.jpg' }}"
                    class="card-img-top"
-                   alt="Music">
+                   alt="{{ $courseEdit['title'] ?? 'Music' }}">
                <div class="card-body p-4">
 
             <div class="subject-icon" aria-hidden="true">
-                <i class="bi bi-music-note-beamed"></i>
+                <i class="bi {{ $courseEdit['icon'] ?? 'bi-music-note-beamed' }}"></i>
             </div>
 
             <h3 class="h4 fw-bold mt-3">
-                Music
+                {{ $courseEdit['title'] ?? 'Music' }}
             </h3>
 
             <p class="text-secondary">
-                Explore music theory, instruments, singing techniques,
-                rhythm, and the fundamentals of creating beautiful music.
+                {{ $courseEdit['description'] ?? 'Explore music theory, instruments, singing techniques, rhythm, and the fundamentals of creating beautiful music.' }}
             </p>
 
             <a href="{{ route('courses.show', 'music') }}"
@@ -613,23 +635,24 @@
             </div>
           </div>
        </div>
+                @endif
                 <!-- SPOKEN ENGLISH -->
+                @php($courseEdit = $courseOverrides['spoken-english'] ?? [])
+                @if ($courseEdit['is_active'] ?? true)
                 <div class="col-md-6 col-lg-4">
                     <div class="card subject-card h-100 border-0 shadow-sm">
-                        <img src="spoken-english-teacher.png"
+                        <img src="{{ $courseEdit['image'] ?? 'spoken-english-teacher.png' }}"
                             class="card-img-top"
-                            alt="Teacher guiding a student during a spoken English lesson">
+                            alt="{{ $courseEdit['title'] ?? 'Teacher guiding a student during a spoken English lesson' }}">
                         <div class="card-body p-4">
                             <div class="subject-icon" aria-hidden="true">
-                                <i class="bi bi-chat-dots-fill"></i>
+                                <i class="bi {{ $courseEdit['icon'] ?? 'bi-chat-dots-fill' }}"></i>
                             </div>
                             <h3 class="h4 fw-bold mt-3">
-                                Spoken English
+                                {{ $courseEdit['title'] ?? 'Spoken English' }}
                             </h3>
                             <p class="text-secondary">
-                                Improve your fluency, pronunciation, and
-                                conversational skills to speak English
-                                naturally and confidently.
+                                {{ $courseEdit['description'] ?? 'Improve your fluency, pronunciation, and conversational skills to speak English naturally and confidently.' }}
                             </p>
                             <a href="{{ route('courses.show', 'spoken-english') }}"
                                 class="learn-link">
@@ -638,6 +661,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>
@@ -765,7 +789,7 @@
                         class="btn btn-orange mt-3">Join as a Teacher →</a>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="{{ secure_asset('teacher_image.jpg') }}"
+                    <img src="/teacher_image.jpg"
                         class="img-fluid rounded-4 shadow"
                         alt="Teacher holding orange book">
                 </div>
@@ -1251,10 +1275,21 @@
                                     id="courseSelect"
                                     required>
                                     <option value="">Choose a course...</option>
-                                    <option value="public-speaking">Public Speaking</option>
-                                    <option value="creative-writing">Creative Writing</option>
-                                    <option value="coding">Coding</option>
-                                    <option value="hustlewise-english">HustleWise English</option>
+                                    @foreach ([
+                                        'public-speaking' => 'Public Speaking',
+                                        'spoken-english' => 'Spoken English',
+                                        'creative-writing' => 'Creative Writing',
+                                        'hustlewise-english' => 'HustleWise English',
+                                        'maths' => 'Maths',
+                                        'coding' => 'Coding',
+                                        'music' => 'Music',
+                                        'business-english' => 'Business English',
+                                    ] as $courseSlug => $defaultCourseTitle)
+                                        @php($courseEdit = $courseOverrides[$courseSlug] ?? [])
+                                        @if ($courseEdit['is_active'] ?? true)
+                                            <option value="{{ $courseSlug }}">{{ $courseEdit['title'] ?? $defaultCourseTitle }}</option>
+                                        @endif
+                                    @endforeach
                                     <option value="maths">Maths</option>
                                     <option value="business-english">Business English</option>
                                     <option value="music">Music</option>

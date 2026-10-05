@@ -1,13 +1,45 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\DemoBookingController;
+use App\Http\Controllers\Admin\CourseAdminController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DemoBookingController;
 use App\Http\Controllers\TeacherApplicationController;
+use App\Http\Middleware\EnsureAdminAuthenticated;
+use App\Models\Course;
+use App\Models\DemoBooking;
+use App\Models\TeacherApplication;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 Route::get('/', function () {
-    return view('index');
+    $catalog = CourseController::catalog();
+    $courseOverrides = [];
+
+    if (Schema::hasTable('courses')) {
+        foreach (Course::query()->get() as $managedCourse) {
+            $defaultCourse = $catalog[$managedCourse->slug] ?? null;
+            if ($defaultCourse === null) {
+                continue;
+            }
+
+            $changedFields = [];
+            foreach ($defaultCourse as $field => $defaultValue) {
+                if ($managedCourse->{$field} !== $defaultValue) {
+                    $changedFields[$field] = $managedCourse->{$field};
+                }
+            }
+
+            if (! $managedCourse->is_active) {
+                $changedFields['is_active'] = false;
+            }
+
+            if ($changedFields !== []) {
+                $courseOverrides[$managedCourse->slug] = $changedFields;
+            }
+        }
+    }
+
+    return view('index', ['courseOverrides' => $courseOverrides]);
 });
 
 Route::get('/book-demo', function () {
@@ -15,6 +47,13 @@ Route::get('/book-demo', function () {
 })->name('demo.book');
 Route::post('/book-demo', [DemoBookingController::class, 'store']);
 Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+Route::get('/admin/login', [CourseAdminController::class, 'login'])->name('admin.login');
+Route::post('/admin/login', [CourseAdminController::class, 'authenticate'])->middleware('throttle:5,1')->name('admin.authenticate');
+Route::prefix('admin')->name('admin.')->middleware(EnsureAdminAuthenticated::class)->group(function () {
+    Route::redirect('/', '/admin/courses');
+    Route::post('/logout', [CourseAdminController::class, 'logout'])->name('logout');
+    Route::resource('courses', CourseAdminController::class)->except(['show']);
+});
 Route::delete('/demo-bookings/{demoBooking}', [DemoBookingController::class, 'destroy'])->name('demo-bookings.destroy');
 
 Route::get('/teacher-login', function () {
@@ -25,20 +64,20 @@ Route::delete('/teacher-applications/{teacherApplication}', [TeacherApplicationC
 
 Route::get('/view-data', function () {
     return view('admin_data', [
-        'demo_bookings' => \App\Models\DemoBooking::all(),
-        'teacher_applications' => \App\Models\TeacherApplication::all()
+        'demo_bookings' => DemoBooking::all(),
+        'teacher_applications' => TeacherApplication::all(),
     ]);
 })->name('view-data');
 
 Route::get('/view-resume/{id}', function ($id) {
-    $application = \App\Models\TeacherApplication::findOrFail($id);
-    if (!$application->resume_base64) {
+    $application = TeacherApplication::findOrFail($id);
+    if (! $application->resume_base64) {
         return abort(404, 'No resume found.');
     }
-    
+
     $pdfData = base64_decode($application->resume_base64);
-    
+
     return response($pdfData)
         ->header('Content-Type', 'application/pdf')
-        ->header('Content-Disposition', 'inline; filename="' . str_replace(' ', '_', $application->first_name) . '_resume.pdf"');
+        ->header('Content-Disposition', 'inline; filename="'.str_replace(' ', '_', $application->first_name).'_resume.pdf"');
 });
