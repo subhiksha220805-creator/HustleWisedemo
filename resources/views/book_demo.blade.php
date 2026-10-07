@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+<<<<<<< HEAD
     <meta name="description" content="Book a free HustleWise demo class and discover a fun way for your child to learn.">
     <title>Book a Free Demo | HustleWise</title>
     <link rel="icon" type="image/png" href="{{ secure_asset('logo.png') }}">
+=======
+    <meta name="description" content="{{ $siteContent['demo_meta_description'] }}">
+    <title>{{ $siteContent['nav_demo'] }} | {{ $siteContent['site_title'] }}</title>
+    <link rel="icon" type="image/png" href="/logo.png">
+>>>>>>> c35d112 (Updated Hustle Wise website)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -67,8 +73,13 @@
 <body class="with-demo-bottom-bar">
     <nav class="navbar demo-nav shadow-sm sticky-top">
         <div class="container py-2 d-flex justify-content-between align-items-center">
+<<<<<<< HEAD
             <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="{{ secure_asset('logo.png') }}" alt="HustleWise" height="46"><span class="text-dark">Hustle<span>Wise</span></span></a>
             <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">← Back to home</a>
+=======
+            <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="/logo.png" alt="HustleWise" height="46"><span class="brand-wordmark"><span class="brand-hustle">Hustle</span><span class="brand-wise">Wise</span></span></a>
+            <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">{{ $siteContent['demo_back_home'] }}</a>
+>>>>>>> c35d112 (Updated Hustle Wise website)
         </div>
     </nav>
 
@@ -94,62 +105,69 @@
                             <li class="mb-3"><i class="bi bi-check-circle-fill me-2" style="color:#ff7a00"></i>Friendly, interactive learning</li>
                             <li><i class="bi bi-check-circle-fill me-2" style="color:#ff7a00"></i>Helpful feedback after class</li>
                         </ul>
-                        <div class="mt-4 p-3 bg-white rounded-4"><span class="fs-4 me-2">💡</span><strong>It only takes a minute</strong><p class="text-secondary small mb-0 mt-1">Tell us what your child would like to learn.</p></div>
+                        <div class="mt-4 p-3 bg-white rounded-4"><span class="fs-4 me-2">💡</span><strong>{{ $siteContent['demo_teaser_title'] }}</strong><p class="text-secondary small mb-0 mt-1">{{ $siteContent['demo_teaser_description'] }}</p></div>
                     </aside>
                 </div>
                 <div class="col-lg-8">
                     <div class="demo-form-card">
                         <div class="mb-4">
-                            <h2 class="h3 fw-bold mb-1" id="demoModalLabel">Book your free demo</h2>
-                            <p class="text-secondary mb-3" id="demoModalSubtitle">Share a few details so we can plan the right class.</p>
+                            <h2 class="h3 fw-bold mb-1" id="demoModalLabel">{{ $siteContent['demo_form_title'] }}</h2>
+                            <p class="text-secondary mb-3" id="demoModalSubtitle">{{ $siteContent['demo_form_description'] }}</p>
                             <div class="progress" id="demoProgress" style="height:7px"><div class="progress-bar" id="progressBar" role="progressbar" style="width:20%" aria-valuemin="0" aria-valuemax="100"></div></div>
                         </div>
                         <div id="successMessage" class="demo-success-panel d-none" role="status" aria-live="polite">
-                            <div class="demo-success-top"><span class="demo-confirmed"><i class="bi bi-check-circle me-1"></i> Booking confirmed</span><span class="demo-trial">Free trial class</span></div>
-                            <h3 id="demoSuccessTitle" class="h3 fw-bold mt-3">Your demo is booked!</h3>
-                            <div class="demo-schedule"><div><strong id="demoSuccessWeekday">Demo day</strong><br><span id="demoSuccessDate">Date confirmed</span></div><div class="demo-schedule-time"><span id="demoSuccessTime">—</span><small>IST</small></div></div>
-                            <p class="text-secondary">Your demo link will be shared shortly.</p>
+                            <div class="demo-success-top"><span class="demo-confirmed"><i class="bi bi-check-circle me-1"></i> {{ $siteContent['demo_success_badge'] }}</span><span class="demo-trial">{{ $siteContent['demo_trial_badge'] }}</span></div>
+                            <h3 id="demoSuccessTitle" class="h3 fw-bold mt-3">{{ $siteContent['demo_success_title'] }}</h3>
+                            <div class="demo-schedule"><div><strong id="demoSuccessWeekday">{{ $siteContent['demo_success_weekday'] }}</strong><br><span id="demoSuccessDate">{{ $siteContent['demo_success_date'] }}</span></div><div class="demo-schedule-time"><span id="demoSuccessTime">—</span><small>{{ $siteContent['demo_timezone'] }}</small></div></div>
+                            <p class="text-secondary">{{ $siteContent['demo_link_notice'] }}</p>
                             <hr>
-                            <h4 class="h5 fw-bold">What to expect in your demo</h4>
-                            <p class="text-secondary"><i class="bi bi-mic-fill me-2" style="color:#ff7a00"></i><strong>Course:</strong> <span id="demoSuccessCourse">Your selected course</span></p>
+                            <h4 class="h5 fw-bold">{{ $siteContent['demo_expect_title'] }}</h4>
+                            <p class="text-secondary"><i class="bi bi-mic-fill me-2" style="color:#ff7a00"></i><strong>{{ $siteContent['demo_success_course_label'] }}</strong> <span id="demoSuccessCourse">{{ $siteContent['demo_success_course_placeholder'] }}</span></p>
                             <div class="demo-info-grid">
-                                <article class="demo-info-card"><i class="bi bi-mortarboard"></i><div><strong id="demoSuccessClassType">Live class with an expert teacher</strong><p>Personal attention in a fun, supportive space.</p></div></article>
-                                <article class="demo-info-card"><i class="bi bi-file-earmark-text"></i><div><strong>Helpful feedback</strong><p>Insights about your child’s strengths and next steps.</p></div></article>
-                                <article class="demo-info-card"><i class="bi bi-patch-check"></i><div><strong>Celebrate progress</strong><p>A participation certificate for their effort.</p></div></article>
+                                <article class="demo-info-card"><i class="bi bi-mortarboard"></i><div><strong id="demoSuccessClassType">{{ $siteContent['demo_live_class_title'] }}</strong><p>{{ $siteContent['demo_live_class_description'] }}</p></div></article>
+                                <article class="demo-info-card"><i class="bi bi-file-earmark-text"></i><div><strong>{{ $siteContent['demo_feedback_title'] }}</strong><p>{{ $siteContent['demo_feedback_description'] }}</p></div></article>
+                                <article class="demo-info-card"><i class="bi bi-patch-check"></i><div><strong>{{ $siteContent['demo_progress_title'] }}</strong><p>{{ $siteContent['demo_progress_description'] }}</p></div></article>
                             </div>
-                            <div class="demo-countdown mb-4">Your demo is getting closer!<br><span class="text-secondary">Starts in </span><strong id="demoCountdown">We’ll see you soon!</strong></div>
-                            <a href="{{ url('/') }}" class="btn btn-orange rounded-pill px-4">Return to HustleWise</a>
+                            <div class="demo-countdown mb-4">{{ $siteContent['demo_countdown_title'] }}<br><span class="text-secondary">{{ $siteContent['demo_countdown_prefix'] }} </span><strong id="demoCountdown">{{ $siteContent['demo_countdown_placeholder'] }}</strong></div>
+                            <a href="{{ url('/') }}" class="btn btn-orange rounded-pill px-4">{{ $siteContent['demo_return_home'] }}</a>
                         </div>
                         <form id="demoForm" onsubmit="event.preventDefault(); submitDemoForm();">
                             <div class="demo-step active" id="demoStep1">
-                                <h3 class="h5 fw-bold mb-3">1. Choose a course</h3>
-                                <label for="courseSelect" class="form-label">What would your child like to learn?</label>
-                                <select class="form-select mb-4" id="courseSelect" required><option value="">Choose a course...</option><option value="public-speaking" {{ request('course') === 'public-speaking' ? 'selected' : '' }}>Public Speaking</option><option value="creative-writing" {{ request('course') === 'creative-writing' ? 'selected' : '' }}>Creative Writing</option><option value="coding" {{ request('course') === 'coding' ? 'selected' : '' }}>Coding</option><option value="hustlewise-english" {{ request('course') === 'hustlewise-english' ? 'selected' : '' }}>HustleWise English</option><option value="maths" {{ request('course') === 'maths' ? 'selected' : '' }}>Maths</option><option value="business-english" {{ request('course') === 'business-english' ? 'selected' : '' }}>Business English</option><option value="music" {{ request('course') === 'music' ? 'selected' : '' }}>Music</option><option value="spoken-english" {{ request('course') === 'spoken-english' ? 'selected' : '' }}>Spoken English</option></select>
-                                <div class="d-flex justify-content-end"><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(1,2)">Next <i class="bi bi-arrow-right"></i></button></div>
+                                <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_course_title'] }}</h3>
+                                <label for="courseSelect" class="form-label">{{ $siteContent['demo_course_question'] }}</label>
+                                <select class="form-select mb-4" id="courseSelect" required><option value="">{{ $siteContent['demo_course_placeholder'] }}</option><option value="public-speaking" {{ request('course') === 'public-speaking' ? 'selected' : '' }}>{{ $siteContent['demo_course_public_speaking'] }}</option><option value="creative-writing" {{ request('course') === 'creative-writing' ? 'selected' : '' }}>{{ $siteContent['demo_course_creative_writing'] }}</option><option value="coding" {{ request('course') === 'coding' ? 'selected' : '' }}>{{ $siteContent['demo_course_coding'] }}</option><option value="hustlewise-english" {{ request('course') === 'hustlewise-english' ? 'selected' : '' }}>{{ $siteContent['demo_course_english'] }}</option><option value="maths" {{ request('course') === 'maths' ? 'selected' : '' }}>{{ $siteContent['demo_course_maths'] }}</option><option value="business-english" {{ request('course') === 'business-english' ? 'selected' : '' }}>{{ $siteContent['demo_course_business_english'] }}</option><option value="music" {{ request('course') === 'music' ? 'selected' : '' }}>{{ $siteContent['demo_course_music'] }}</option><option value="spoken-english" {{ request('course') === 'spoken-english' ? 'selected' : '' }}>{{ $siteContent['demo_course_spoken_english'] }}</option></select>
+                                <div class="d-flex justify-content-end"><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(1,2)">{{ $siteContent['demo_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                             </div>
                             <div class="demo-step" id="demoStep2">
+<<<<<<< HEAD
                                 <h3 class="h5 fw-bold mb-3">2. Choose a class style</h3>
                                 <fieldset class="mb-3"><legend class="form-label fs-6">Choose how your child would like to learn</legend><div class="demo-mode-options"><label class="demo-mode-card"><input type="radio" name="teacherPref" value="1 on 1" checked><img src="{{ secure_asset('demo-one-to-one.png') }}" alt=""><span class="demo-mode-copy"><strong>One-on-one</strong><small>Personal attention in a focused lesson.</small></span></label><label class="demo-mode-card"><input type="radio" name="teacherPref" value="group"><img src="{{ secure_asset('demo-group-class.png') }}" alt=""><span class="demo-mode-copy"><strong>Group class</strong><small>Learn and share ideas with other students.</small></span></label></div></fieldset>
                                 <label for="demoFeedback" class="form-label">Anything you’d like us to know? <span class="text-secondary">(optional)</span></label><textarea class="form-control mb-4" id="demoFeedback" rows="3" placeholder="Share a goal or learning preference"></textarea>
                                 <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(2,1)">← Back</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(2,3)">Next <i class="bi bi-arrow-right"></i></button></div>
+=======
+                            <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_class_title'] }}</h3>
+                                <fieldset class="mb-3"><legend class="form-label fs-6">{{ $siteContent['demo_class_style_question'] }}</legend><div class="demo-mode-options"><label class="demo-mode-card"><input type="radio" name="teacherPref" value="1 on 1" checked><img src="{{ $siteContent['demo_one_image'] }}" alt="{{ $siteContent['demo_one_title'] }} class"><span class="demo-mode-copy"><strong>{{ $siteContent['demo_one_title'] }}</strong><small>{{ $siteContent['demo_one_description'] }}</small></span></label><label class="demo-mode-card"><input type="radio" name="teacherPref" value="group"><img src="{{ $siteContent['demo_group_image'] }}" alt="{{ $siteContent['demo_group_title'] }}"><span class="demo-mode-copy"><strong>{{ $siteContent['demo_group_title'] }}</strong><small>{{ $siteContent['demo_group_description'] }}</small></span></label></div></fieldset>
+                                <label for="demoFeedback" class="form-label">{{ $siteContent['demo_feedback_label'] }} <span class="text-secondary">{{ $siteContent['demo_optional_label'] }}</span></label><textarea class="form-control mb-4" id="demoFeedback" rows="3" placeholder="{{ $siteContent['demo_feedback_placeholder'] }}"></textarea>
+                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(2,1)">{{ $siteContent['demo_back_button'] }}</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(2,3)">{{ $siteContent['demo_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
+>>>>>>> c35d112 (Updated Hustle Wise website)
                             </div>
                             <div class="demo-step" id="demoStep3">
-                                <h3 class="h5 fw-bold mb-3">3. Pick a level and time</h3>
-                                <fieldset class="mb-4"><legend class="form-label fs-6">Select your child’s class</legend><div class="demo-class-select" id="demoClassOptions"><button type="button" class="demo-class-button" data-value="LKG">LKG</button><button type="button" class="demo-class-button" data-value="UKG">UKG</button>@for ($class = 1; $class <= 12; $class++)<button type="button" class="demo-class-button" data-value="Class {{ $class }}">Class {{ $class }}</button>@endfor<button type="button" class="demo-class-button" data-value="Dropper">Dropper</button><button type="button" class="demo-class-button" data-value="Adult">Adult</button></div><input type="hidden" id="classSelect" value=""></fieldset>
-                                <div class="row g-3 mb-4"><div class="col-md-6"><label for="dateSelect" class="form-label">Preferred day</label><select class="form-select" id="dateSelect" required><option value="">Choose a day...</option><option value="today">Today</option><option value="tomorrow">Tomorrow</option><option value="day_after">Day after tomorrow</option></select></div><div class="col-md-6"><label for="timeSelect" class="form-label">Preferred time</label><input class="form-control" type="time" id="timeSelect" required></div></div>
-                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(3,2)">← Back</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(3,4)">Next <i class="bi bi-arrow-right"></i></button></div>
+                                <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_level_title'] }}</h3>
+                                <fieldset class="mb-4"><legend class="form-label fs-6">{{ $siteContent['demo_class_question'] }}</legend><div class="demo-class-select" id="demoClassOptions"><button type="button" class="demo-class-button" data-value="LKG">{{ $siteContent['demo_lkg_label'] }}</button><button type="button" class="demo-class-button" data-value="UKG">{{ $siteContent['demo_ukg_label'] }}</button>@for ($class = 1; $class <= 12; $class++)<button type="button" class="demo-class-button" data-value="Class {{ $class }}">{{ $siteContent['demo_class_prefix'] }} {{ $class }}</button>@endfor<button type="button" class="demo-class-button" data-value="Dropper">{{ $siteContent['demo_dropper_label'] }}</button><button type="button" class="demo-class-button" data-value="Adult">{{ $siteContent['demo_adult_label'] }}</button></div><input type="hidden" id="classSelect" value=""></fieldset>
+                                <div class="row g-3 mb-4"><div class="col-md-6"><label for="dateSelect" class="form-label">{{ $siteContent['demo_preferred_day_label'] }}</label><select class="form-select" id="dateSelect" required><option value="">{{ $siteContent['demo_date_placeholder'] }}</option><option value="today">{{ $siteContent['demo_date_today'] }}</option><option value="tomorrow">{{ $siteContent['demo_date_tomorrow'] }}</option><option value="day_after">{{ $siteContent['demo_date_day_after'] }}</option></select></div><div class="col-md-6"><label for="timeSelect" class="form-label">{{ $siteContent['demo_preferred_time_label'] }}</label><input class="form-control" type="time" id="timeSelect" required></div></div>
+                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(3,2)">{{ $siteContent['demo_back_button'] }}</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(3,4)">{{ $siteContent['demo_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                             </div>
                             <div class="demo-step" id="demoStep4">
-                                <h3 class="h5 fw-bold mb-3">4. Contact details</h3>
-                                <label for="demoEmailInput" class="form-label">Email address</label><input class="form-control mb-4" type="email" id="demoEmailInput" placeholder="name@example.com" required>
-                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(4,3)">← Back</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(4,5)">Next <i class="bi bi-arrow-right"></i></button></div>
+                                <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_contact_title'] }}</h3>
+                                <label for="demoEmailInput" class="form-label">{{ $siteContent['demo_email_label'] }}</label><input class="form-control mb-4" type="email" id="demoEmailInput" placeholder="{{ $siteContent['demo_email_placeholder'] }}" required>
+                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(4,3)">{{ $siteContent['demo_back_button'] }}</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(4,5)">{{ $siteContent['demo_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                             </div>
                             <div class="demo-step" id="demoStep5">
-                                <h3 class="h5 fw-bold mb-3">5. Parent and learner details</h3>
-                                <label for="parentName" class="form-label">Parent name</label><input class="form-control mb-3" id="parentName" type="text" placeholder="Your name" required>
-                                <label for="MobileNumber" class="form-label">Mobile number</label><input class="form-control mb-3" id="MobileNumber" type="tel" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="10-digit mobile number" required>
-                                <label for="childName" class="form-label">Child’s name</label><input class="form-control mb-4" id="childName" type="text" placeholder="Learner’s name" required>
-                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(5,4)">← Back</button><button type="submit" class="btn btn-orange btn-lg rounded-pill px-4">Book my free demo <i class="bi bi-arrow-right"></i></button></div>
+                                <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_parent_title'] }}</h3>
+                                <label for="parentName" class="form-label">{{ $siteContent['demo_parent_label'] }}</label><input class="form-control mb-3" id="parentName" type="text" placeholder="{{ $siteContent['demo_parent_placeholder'] }}" required>
+                                <label for="MobileNumber" class="form-label">{{ $siteContent['demo_mobile_label'] }}</label><input class="form-control mb-3" id="MobileNumber" type="tel" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="{{ $siteContent['demo_mobile_placeholder'] }}" required>
+                                <label for="childName" class="form-label">{{ $siteContent['demo_child_label'] }}</label><input class="form-control mb-4" id="childName" type="text" placeholder="{{ $siteContent['demo_child_placeholder'] }}" required>
+                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(5,4)">{{ $siteContent['demo_back_button'] }}</button><button type="submit" class="btn btn-orange btn-lg rounded-pill px-4">{{ $siteContent['demo_submit_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                             </div>
                         </form>
                     </div>
@@ -158,12 +176,33 @@
         </div>
     </main>
 
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4 shadow"><div class="modal-body text-center p-5"><h4 class="fw-bold mb-3" id="modalTitle">Alert</h4><p class="text-secondary mb-4 fs-5" id="modalMessage">Please check your details and try again.</p><button type="button" class="btn btn-orange rounded-pill px-5" data-bs-dismiss="modal">Continue</button></div></div></div></div>
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4 shadow"><div class="modal-body text-center p-5"><h4 class="fw-bold mb-3" id="modalTitle">{{ $siteContent['demo_alert_title'] }}</h4><p class="text-secondary mb-4 fs-5" id="modalMessage">{{ $siteContent['demo_alert_message'] }}</p><button type="button" class="btn btn-orange rounded-pill px-5" data-bs-dismiss="modal">{{ $siteContent['demo_continue_button'] }}</button></div></div></div></div>
     @include('partials.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
     <script src="{{ secure_asset('script.js?v=submit-error-details') }}"></script>
+=======
+    <script src="/script.js?v=submit-error-details"></script>
+    @php
+        $demoPageCopy = [
+            'classRequiredTitle' => $siteContent['demo_alert_class_title'],
+            'classRequiredMessage' => $siteContent['demo_alert_class_message'],
+            'successDynamicTitle' => $siteContent['demo_success_dynamic_title'],
+            'oneToOneClassTitle' => $siteContent['demo_one_to_one_class_title'],
+            'groupClassTitle' => $siteContent['demo_group_class_title'],
+            'countdownNow' => $siteContent['demo_countdown_now'],
+            'confirmedFormTitle' => $siteContent['demo_confirmed_form_title'],
+            'confirmedFormDescription' => $siteContent['demo_confirmed_form_description'],
+            'submitErrorTitle' => $siteContent['demo_submit_error_title'],
+            'submitErrorMessage' => $siteContent['demo_submit_error_message'],
+            'httpErrorMessage' => $siteContent['demo_http_error_message'],
+            'serverErrorMessage' => $siteContent['demo_server_error_message'],
+        ];
+    @endphp
+>>>>>>> c35d112 (Updated Hustle Wise website)
     <script>
         let currentDemoStep = 1;
+        window.demoPageCopy = @json($demoPageCopy);
         document.querySelectorAll('#demoClassOptions .demo-class-button').forEach((button) => {
             button.addEventListener('click', () => {
                 document.querySelectorAll('#demoClassOptions .demo-class-button').forEach((option) => option.classList.remove('selected'));
@@ -179,7 +218,7 @@
         function demoNextStep(current, next) {
             const step = document.getElementById(`demoStep${current}`);
             if (current === 3 && !document.getElementById('classSelect').value) {
-                showAlert('Class required', 'Please select your child’s class to continue.');
+                showAlert(window.demoPageCopy.classRequiredTitle, window.demoPageCopy.classRequiredMessage);
                 return;
             }
             const required = step.querySelectorAll('input[required], select[required], textarea[required]');

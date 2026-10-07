@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Teach with HustleWise. Share your skills and help children learn with confidence.">
+    <meta name="description" content="{{ $siteContent['teacher_meta_description'] }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Teach with HustleWise</title>
     <link rel="icon" type="image/png" href="{{ secure_asset('logo.png') }}">
@@ -67,7 +67,7 @@
                 <img src="{{ secure_asset('logo.png') }}" alt="HustleWise" height="46">
                 <span>Hustle<span>Wise</span></span>
             </a>
-            <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">← Back to home</a>
+            <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">{{ $siteContent['teacher_back_home'] }}</a>
         </div>
     </nav>
 
@@ -79,7 +79,11 @@
                 <p class="teacher-lead mt-4">Bring your knowledge, warmth and creativity to online classes that make learning meaningful. Get to know the role and apply to join our teaching community.</p>
                 <a class="btn btn-orange btn-lg rounded-pill px-4 mt-2" href="#teacher-application">Start your application <span aria-hidden="true">→</span></a>
             </div>
+<<<<<<< HEAD
             <div class="col-lg-6"><div class="teacher-hero-photo"><img src="{{ secure_asset('teacher-high-five.png') }}" alt="Teacher celebrating a student's answer with a high five"><span class="teacher-photo-note"><i class="bi bi-heart-fill me-2" style="color:#ff7a00"></i>Make learning meaningful</span></div></div>
+=======
+                <div class="col-lg-6"><div class="teacher-hero-photo"><img src="{{ $siteContent['teacher_page_image'] }}" alt="{{ $siteContent['teacher_page_image_alt'] }}"><span class="teacher-photo-note"><i class="bi bi-heart-fill me-2" style="color:#ff7a00"></i>{{ $siteContent['teacher_photo_caption'] }}</span></div></div>
+>>>>>>> c35d112 (Updated Hustle Wise website)
         </div>
         </div>
     </header>
@@ -88,47 +92,53 @@
         <section class="teacher-section" id="teacher-application">
             <div class="container" style="max-width:1000px">
                 <div class="text-center mb-4">
+<<<<<<< HEAD
                     <span class="section-label">TAKE THE NEXT STEP</span>
                     <h2 class="teacher-section-title mt-2">Apply to teach with us</h2>
                     <p class="text-secondary">Share your details and resume. Our team will review your application and contact you.</p>
+=======
+                    <span class="section-label">{{ $siteContent['teacher_form_section_label'] }}</span>
+                    <h2 class="teacher-section-title mt-2">{{ $siteContent['teacher_application_title'] }}</h2>
+                    <p class="text-secondary">{{ $siteContent['teacher_application_description'] }}</p>
+>>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
                 <div class="progress mb-3" style="height:8px"><div class="progress-bar" id="teacherProgressBar" role="progressbar" style="width:14.3%" aria-valuenow="14.3" aria-valuemin="0" aria-valuemax="100"></div></div>
                 <div id="teacherSuccessMessage" class="alert alert-success text-center d-none rounded-4 p-5" role="status">
                     <div class="display-1 mb-3">🎉</div>
-                    <h3 class="fw-bold mb-3">Application submitted!</h3>
-                    <p class="text-secondary fs-5">Thank you for applying to teach with HustleWise. Your details and resume have been received. Our team will review them and contact you soon.</p>
-                    <a href="{{ url('/') }}" class="btn teacher-orange-btn rounded-pill px-4">Return to home</a>
+                    <h3 class="fw-bold mb-3">{{ $siteContent['teacher_success_title'] }}</h3>
+                    <p class="text-secondary fs-5">{{ $siteContent['teacher_success_description'] }}</p>
+                    <a href="{{ url('/') }}" class="btn teacher-orange-btn rounded-pill px-4">{{ $siteContent['teacher_return_home'] }}</a>
                 </div>
                 <div id="teacherFormCard" class="teacher-form-wrap">
                     <form id="hiringForm" onsubmit="event.preventDefault(); submitApplication();">
                         <input id="firstNameInput" type="hidden">
                         <div class="teacher-application-step active" data-teacher-step="1">
-                            <h3 class="h4 fw-bold mb-4">Let’s get to know you</h3>
-                            <div class="row g-3"><div class="col-md-6"><label class="form-label fw-semibold" for="fullNameInput">Full name</label><input class="form-control" id="fullNameInput" type="text" placeholder="Your full name" autocomplete="name" required></div><div class="col-md-6"><label class="form-label fw-semibold" for="phoneInput">Phone number</label><input class="form-control" id="phoneInput" type="tel" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="10-digit phone number" oninput="this.value=this.value.replace(/[^0-9]/g,'')" autocomplete="tel" required></div></div>
-                            <div class="d-flex justify-content-end mt-4"><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(1)">Next <i class="bi bi-arrow-right"></i></button></div>
+                            <h3 class="h4 fw-bold mb-4">{{ $siteContent['teacher_step_one_title'] }}</h3>
+                            <div class="row g-3"><div class="col-md-6"><label class="form-label fw-semibold" for="fullNameInput">{{ $siteContent['teacher_full_name_label'] }}</label><input class="form-control" id="fullNameInput" type="text" placeholder="{{ $siteContent['teacher_full_name_placeholder'] }}" autocomplete="name" required></div><div class="col-md-6"><label class="form-label fw-semibold" for="phoneInput">{{ $siteContent['teacher_phone_label'] }}</label><input class="form-control" id="phoneInput" type="tel" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="{{ $siteContent['teacher_phone_placeholder'] }}" oninput="this.value=this.value.replace(/[^0-9]/g,'')" autocomplete="tel" required></div></div>
+                            <div class="d-flex justify-content-end mt-4"><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(1)">{{ $siteContent['teacher_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                         </div>
                         <div class="teacher-application-step" data-teacher-step="2">
-                            <div class="text-center py-2"><div class="teacher-icon mx-auto mb-3" style="width:64px;height:64px;font-size:1.7rem"><i class="bi bi-stars"></i></div><span class="section-label">YOUR TEACHING JOURNEY STARTS HERE</span><h3 class="h2 fw-bold mt-3">Welcome to the hiring process<span id="welcomeName"></span>!</h3><p class="text-secondary fs-5 mx-auto" style="max-width:600px">We’ll guide you through a few short steps to learn about your background and teaching experience.</p><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(2)">← Back</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(2)">Continue <i class="bi bi-arrow-right"></i></button></div></div>
+                            <div class="text-center py-2"><div class="teacher-icon mx-auto mb-3" style="width:64px;height:64px;font-size:1.7rem"><i class="bi bi-stars"></i></div><span class="section-label">{{ $siteContent['teacher_step_two_badge'] }}</span><h3 class="h2 fw-bold mt-3">{{ $siteContent['teacher_welcome_prefix'] }}<span id="welcomeName"></span>{{ $siteContent['teacher_welcome_suffix'] }}</h3><p class="text-secondary fs-5 mx-auto" style="max-width:600px">{{ $siteContent['teacher_welcome_description'] }}</p><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(2)">{{ $siteContent['teacher_back_button'] }}</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(2)">{{ $siteContent['teacher_continue_button'] }} <i class="bi bi-arrow-right"></i></button></div></div>
                         </div>
                         <div class="teacher-application-step" data-teacher-step="3">
-                            <h3 class="h4 fw-bold mb-4">Email verification</h3>
-                            <div class="row g-3 align-items-end"><div class="col-md-8"><label class="form-label fw-semibold" for="emailInput">Email address</label><input class="form-control" id="emailInput" type="email" placeholder="name@example.com" autocomplete="email" required></div><div class="col-md-4"><button type="button" class="btn btn-outline-warning rounded-pill w-100 py-2" id="sendTeacherOtp" onclick="sendTeacherOtp()">Send verification code</button></div><div class="col-md-6"><label class="form-label fw-semibold" for="teacherOtp">4-digit verification code</label><input class="form-control" id="teacherOtp" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Enter 4-digit code" oninput="this.value=this.value.replace(/[^0-9]/g,'')"></div><div class="col-12"><span id="teacherOtpStatus" class="small text-secondary" aria-live="polite"></span></div></div>
-                            <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(3)">← Back</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(3)">Next <i class="bi bi-arrow-right"></i></button></div>
+                            <h3 class="h4 fw-bold mb-4">{{ $siteContent['teacher_step_three_title'] }}</h3>
+                            <div class="row g-3 align-items-end"><div class="col-md-8"><label class="form-label fw-semibold" for="emailInput">{{ $siteContent['teacher_email_label'] }}</label><input class="form-control" id="emailInput" type="email" placeholder="{{ $siteContent['teacher_email_placeholder'] }}" autocomplete="email" required></div><div class="col-md-4"><button type="button" class="btn btn-outline-warning rounded-pill w-100 py-2" id="sendTeacherOtp" onclick="sendTeacherOtp()">{{ $siteContent['teacher_send_code_button'] }}</button></div><div class="col-md-6"><label class="form-label fw-semibold" for="teacherOtp">{{ $siteContent['teacher_code_label'] }}</label><input class="form-control" id="teacherOtp" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="{{ $siteContent['teacher_code_placeholder'] }}" oninput="this.value=this.value.replace(/[^0-9]/g,'')"></div><div class="col-12"><span id="teacherOtpStatus" class="small text-secondary" aria-live="polite"></span></div></div>
+                            <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(3)">{{ $siteContent['teacher_back_button'] }}</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(3)">{{ $siteContent['teacher_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                         </div>
                         <div class="teacher-application-step" data-teacher-step="4">
-                            <h3 class="h4 fw-bold mb-4">Your personal and education details</h3>
-                            <div class="row g-3 mb-4"><div class="col-md-4"><div class="teacher-check"><small class="text-secondary d-block">Full name</small><strong id="reviewFullName"></strong></div></div><div class="col-md-4"><div class="teacher-check"><small class="text-secondary d-block">Phone number</small><strong id="reviewPhone"></strong></div></div><div class="col-md-4"><div class="teacher-check"><small class="text-secondary d-block">Email</small><strong id="reviewEmail"></strong></div></div></div>
-                            <div class="row g-3"><div class="col-md-6"><label class="form-label fw-semibold" for="genderSelect">Gender</label><select class="form-select" id="genderSelect" required><option value="">Select gender</option><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></div><div class="col-md-6"><label class="form-label fw-semibold" for="ageInput">Age</label><input class="form-control" id="ageInput" type="number" min="18" max="100" placeholder="18 or older" required></div><div class="col-md-6"><label class="form-label fw-semibold" for="qualificationInput">Qualification</label><input class="form-control" id="qualificationInput" type="text" placeholder="e.g. B.Ed, teacher training" required></div><div class="col-md-6"><label class="form-label fw-semibold" for="degreeInput">Highest degree</label><input class="form-control" id="degreeInput" type="text" placeholder="e.g. BA in English" required></div></div>
-                            <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(4)">← Back</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(4)">Next <i class="bi bi-arrow-right"></i></button></div>
+                            <h3 class="h4 fw-bold mb-4">{{ $siteContent['teacher_step_four_title'] }}</h3>
+                            <div class="row g-3 mb-4"><div class="col-md-4"><div class="teacher-check"><small class="text-secondary d-block">{{ $siteContent['teacher_review_name_label'] }}</small><strong id="reviewFullName"></strong></div></div><div class="col-md-4"><div class="teacher-check"><small class="text-secondary d-block">{{ $siteContent['teacher_review_phone_label'] }}</small><strong id="reviewPhone"></strong></div></div><div class="col-md-4"><div class="teacher-check"><small class="text-secondary d-block">{{ $siteContent['teacher_review_email_label'] }}</small><strong id="reviewEmail"></strong></div></div></div>
+                            <div class="row g-3"><div class="col-md-6"><label class="form-label fw-semibold" for="genderSelect">{{ $siteContent['teacher_gender_label'] }}</label><select class="form-select" id="genderSelect" required><option value="">{{ $siteContent['teacher_gender_placeholder'] }}</option><option value="male">{{ $siteContent['teacher_gender_male'] }}</option><option value="female">{{ $siteContent['teacher_gender_female'] }}</option><option value="other">{{ $siteContent['teacher_gender_other'] }}</option></select></div><div class="col-md-6"><label class="form-label fw-semibold" for="ageInput">{{ $siteContent['teacher_age_label'] }}</label><input class="form-control" id="ageInput" type="number" min="18" max="100" placeholder="{{ $siteContent['teacher_age_placeholder'] }}" required></div><div class="col-md-6"><label class="form-label fw-semibold" for="qualificationInput">{{ $siteContent['teacher_qualification_label'] }}</label><input class="form-control" id="qualificationInput" type="text" placeholder="{{ $siteContent['teacher_qualification_placeholder'] }}" required></div><div class="col-md-6"><label class="form-label fw-semibold" for="degreeInput">{{ $siteContent['teacher_degree_label'] }}</label><input class="form-control" id="degreeInput" type="text" placeholder="{{ $siteContent['teacher_degree_placeholder'] }}" required></div></div>
+                            <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(4)">{{ $siteContent['teacher_back_button'] }}</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(4)">{{ $siteContent['teacher_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                         </div>
                         <div class="teacher-application-step" data-teacher-step="5">
-                            <h3 class="h4 fw-bold mb-4">Tell us about your work experience</h3><label class="form-label fw-semibold" for="experienceInput">Teaching and work experience</label><textarea class="form-control" id="experienceInput" placeholder="Tell us about your teaching roles, experience and subjects" required></textarea><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(5)">← Back</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(5)">Next <i class="bi bi-arrow-right"></i></button></div>
+                            <h3 class="h4 fw-bold mb-4">{{ $siteContent['teacher_step_five_title'] }}</h3><label class="form-label fw-semibold" for="experienceInput">{{ $siteContent['teacher_experience_label'] }}</label><textarea class="form-control" id="experienceInput" placeholder="{{ $siteContent['teacher_experience_placeholder'] }}" required></textarea><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(5)">{{ $siteContent['teacher_back_button'] }}</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(5)">{{ $siteContent['teacher_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                         </div>
                         <div class="teacher-application-step" data-teacher-step="6">
-                            <h3 class="h4 fw-bold mt-2 mb-4">Teaching certifications</h3><fieldset><legend class="form-label fw-semibold fs-6">Select any you have <span class="text-secondary fw-normal">(optional)</span></legend><div class="row g-2"><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certTESOL"> TESOL</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certTOFFL"> TOEFL</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCET"> CET</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCLT"> CLT</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCECT"> CECT</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCELTA"> CELTA</label></div></div><div id="teacherStep5" class="mt-3"><label class="form-label fw-semibold" for="otherCertifications">Other certifications</label><input class="form-control" id="otherCertifications" type="text" placeholder="Any other relevant certifications"></div></fieldset><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(6)">← Back</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(6)">Next <i class="bi bi-arrow-right"></i></button></div>
+                            <h3 class="h4 fw-bold mt-2 mb-4">{{ $siteContent['teacher_step_six_title'] }}</h3><fieldset><legend class="form-label fw-semibold fs-6">{{ $siteContent['teacher_certification_question'] }} <span class="text-secondary fw-normal">{{ $siteContent['teacher_optional_label'] }}</span></legend><div class="row g-2"><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certTESOL"> {{ $siteContent['teacher_cert_tesol'] }}</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certTOFFL"> {{ $siteContent['teacher_cert_toefl'] }}</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCET"> {{ $siteContent['teacher_cert_cet'] }}</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCLT"> {{ $siteContent['teacher_cert_clt'] }}</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCECT"> {{ $siteContent['teacher_cert_cect'] }}</label></div><div class="col-6 col-md-4"><label class="teacher-check d-flex gap-2 align-items-center"><input type="checkbox" id="certCELTA"> {{ $siteContent['teacher_cert_celta'] }}</label></div></div><div id="teacherStep5" class="mt-3"><label class="form-label fw-semibold" for="otherCertifications">{{ $siteContent['teacher_other_certifications_label'] }}</label><input class="form-control" id="otherCertifications" type="text" placeholder="{{ $siteContent['teacher_other_certifications_placeholder'] }}"></div></fieldset><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(6)">{{ $siteContent['teacher_back_button'] }}</button><button type="button" class="btn teacher-orange-btn btn-lg rounded-pill px-4" onclick="nextTeacherApplicationStep(6)">{{ $siteContent['teacher_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                         </div>
                         <div class="teacher-application-step" data-teacher-step="7">
-                            <h3 class="h4 fw-bold mt-2 mb-4">Add your resume</h3><label class="form-label fw-semibold" for="resumeFile">Resume (PDF, 1 KB–20 MB)</label><input class="form-control" type="file" id="resumeFile" accept="application/pdf,.pdf" required><div class="form-text">Please upload your latest resume as a PDF.</div><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(7)">← Back</button><button class="btn teacher-orange-btn btn-lg rounded-pill px-5" type="submit">Submit application <i class="bi bi-arrow-right"></i></button></div>
+                            <h3 class="h4 fw-bold mt-2 mb-4">{{ $siteContent['teacher_step_seven_title'] }}</h3><label class="form-label fw-semibold" for="resumeFile">{{ $siteContent['teacher_resume_label'] }}</label><input class="form-control" type="file" id="resumeFile" accept="application/pdf,.pdf" required><div class="form-text">{{ $siteContent['teacher_resume_help'] }}</div><div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="previousTeacherApplicationStep(7)">{{ $siteContent['teacher_back_button'] }}</button><button class="btn teacher-orange-btn btn-lg rounded-pill px-5" type="submit">{{ $siteContent['teacher_submit_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                         </div>
                     </form>
                 </div>
@@ -138,21 +148,36 @@
         <section class="teacher-section pt-5">
             <div class="container">
                 <div class="text-center mb-4">
+<<<<<<< HEAD
                     <span class="section-label">THE HUSTLEWISE TEACHER</span>
                     <h2 class="teacher-section-title mt-2">A teacher, mentor and lifelong learner</h2>
                     <p class="text-secondary mx-auto" style="max-width:700px">Choose a role to see how teachers guide children and keep growing with HustleWise.</p>
+=======
+                    <span class="section-label">{{ $siteContent['teacher_roles_section_label'] }}</span>
+                    <h2 class="teacher-section-title mt-2">{{ $siteContent['teacher_roles_title'] }}</h2>
+                    <p class="text-secondary mx-auto" style="max-width:700px">{{ $siteContent['teacher_roles_description'] }}</p>
+>>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
-                <div class="teacher-role-tabs" role="tablist" aria-label="Teacher roles">
-                    <button class="teacher-role-tab active" type="button" id="mentorTab" role="tab" aria-selected="true" aria-controls="mentorPanel" onclick="showTeacherRole('mentor')">Mentor</button>
-                    <button class="teacher-role-tab" type="button" id="learnerTab" role="tab" aria-selected="false" aria-controls="learnerPanel" onclick="showTeacherRole('learner')">Learner</button>
+                <div class="teacher-role-tabs" role="tablist" aria-label="{{ $siteContent['teacher_roles_aria_label'] }}">
+                    <button class="teacher-role-tab active" type="button" id="mentorTab" role="tab" aria-selected="true" aria-controls="mentorPanel" onclick="showTeacherRole('mentor')">{{ $siteContent['teacher_mentor_tab'] }}</button>
+                    <button class="teacher-role-tab" type="button" id="learnerTab" role="tab" aria-selected="false" aria-controls="learnerPanel" onclick="showTeacherRole('learner')">{{ $siteContent['teacher_learner_tab'] }}</button>
                 </div>
                 <div class="teacher-role-panel active" id="mentorPanel" role="tabpanel" aria-labelledby="mentorTab">
+<<<<<<< HEAD
                     <img class="teacher-role-image" src="{{ secure_asset('mentor-teacher-student.png') }}" alt="Teacher mentoring a student">
                     <div class="teacher-role-copy"><span class="section-label">YOUR IMPACT</span><h3 class="h3 fw-bold mt-2">As a mentor</h3><p class="text-secondary">Be the encouraging guide who helps each child feel ready to try.</p><ul class="text-secondary mb-0"><li class="mb-2">Lead friendly online lessons from home.</li><li class="mb-2">Coach children through practice and helpful feedback.</li><li>Celebrate progress and growing confidence.</li></ul></div>
                 </div>
                 <div class="teacher-role-panel" id="learnerPanel" role="tabpanel" aria-labelledby="learnerTab" hidden>
                     <img class="teacher-role-image" src="{{ secure_asset('learner-graduate.png') }}" alt="Learner celebrating a graduation milestone">
                     <div class="teacher-role-copy"><span class="section-label">GROW WITH US</span><h3 class="h3 fw-bold mt-2">As a learner</h3><p class="text-secondary">Keep discovering better ways to support young learners.</p><ul class="text-secondary mb-0"><li class="mb-2">Join onboarding and practical teaching guidance.</li><li class="mb-2">Build your classroom and online teaching skills.</li><li>Share ideas with the HustleWise teaching community.</li></ul></div>
+=======
+                    <img class="teacher-role-image" src="{{ $siteContent['teacher_mentor_image'] }}" alt="{{ $siteContent['teacher_mentor_image_alt'] }}">
+                    <div class="teacher-role-copy"><span class="section-label">{{ $siteContent['teacher_mentor_section_label'] }}</span><h3 class="h3 fw-bold mt-2">{{ $siteContent['teacher_mentor_heading'] }}</h3><p class="text-secondary">{{ $siteContent['teacher_mentor_description'] }}</p><ul class="text-secondary mb-0"><li class="mb-2">{{ $siteContent['teacher_mentor_bullet_one'] }}</li><li class="mb-2">{{ $siteContent['teacher_mentor_bullet_two'] }}</li><li>{{ $siteContent['teacher_mentor_bullet_three'] }}</li></ul></div>
+                </div>
+                <div class="teacher-role-panel" id="learnerPanel" role="tabpanel" aria-labelledby="learnerTab" hidden>
+                    <img class="teacher-role-image" src="{{ $siteContent['teacher_learner_image'] }}" alt="{{ $siteContent['teacher_learner_image_alt'] }}">
+                    <div class="teacher-role-copy"><span class="section-label">{{ $siteContent['teacher_learner_section_label'] }}</span><h3 class="h3 fw-bold mt-2">{{ $siteContent['teacher_learner_heading'] }}</h3><p class="text-secondary">{{ $siteContent['teacher_learner_description'] }}</p><ul class="text-secondary mb-0"><li class="mb-2">{{ $siteContent['teacher_learner_bullet_one'] }}</li><li class="mb-2">{{ $siteContent['teacher_learner_bullet_two'] }}</li><li>{{ $siteContent['teacher_learner_bullet_three'] }}</li></ul></div>
+>>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
             </div>
         </section>
@@ -160,17 +185,23 @@
         <section class="teacher-section teacher-requirements">
             <div class="container">
                 <div class="text-center mb-5">
+<<<<<<< HEAD
                     <span class="section-label">WHAT HELPS YOU SUCCEED</span>
                     <h2 class="teacher-section-title mt-2">What we look for in a teacher</h2>
                     <p class="text-secondary">A supportive attitude and a love of helping children learn matter to us.</p>
+=======
+                    <span class="section-label">{{ $siteContent['teacher_requirements_section_label'] }}</span>
+                    <h2 class="teacher-section-title mt-2">{{ $siteContent['teacher_requirements_title'] }}</h2>
+                    <p class="text-secondary">{{ $siteContent['teacher_requirements_description'] }}</p>
+>>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
                 <div class="row g-3">
-                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🎓</div><h3 class="h5 fw-bold">Education</h3><p class="text-secondary mb-0">A bachelor’s degree or relevant higher qualification is preferred.</p></div></div>
-                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">💬</div><h3 class="h5 fw-bold">Communication</h3><p class="text-secondary mb-0">Clear, confident communication and patience with young learners.</p></div></div>
-                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">📚</div><h3 class="h5 fw-bold">Subject knowledge</h3><p class="text-secondary mb-0">Strong English skills and confidence teaching your chosen subjects.</p></div></div>
-                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🏅</div><h3 class="h5 fw-bold">Relevant training</h3><p class="text-secondary mb-0">TESOL, CELTA, TOEFL or other teaching certificates are welcome.</p></div></div>
-                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">💻</div><h3 class="h5 fw-bold">Online readiness</h3><p class="text-secondary mb-0">A reliable internet connection and comfort using basic apps and websites.</p></div></div>
-                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🤝</div><h3 class="h5 fw-bold">A team mindset</h3><p class="text-secondary mb-0">Willingness to collaborate and help families stay connected to learning.</p></div></div>
+                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🎓</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_education_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_education_description'] }}</p></div></div>
+                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">💬</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_communication_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_communication_description'] }}</p></div></div>
+                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">📚</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_subject_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_subject_description'] }}</p></div></div>
+                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🏅</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_training_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_training_description'] }}</p></div></div>
+                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">💻</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_online_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_online_description'] }}</p></div></div>
+                    <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🤝</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_team_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_team_description'] }}</p></div></div>
                 </div>
             </div>
         </section>
@@ -180,18 +211,35 @@
 
     @include('partials.footer')
     <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4 shadow"><div class="modal-body text-center p-5"><h4 class="fw-bold mb-3" id="modalTitle">Alert</h4><p class="text-secondary mb-4 fs-5" id="modalMessage">Please check your details and try again.</p><button type="button" class="btn teacher-orange-btn rounded-pill px-5" data-bs-dismiss="modal">Continue</button></div></div></div>
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4 shadow"><div class="modal-body text-center p-5"><h4 class="fw-bold mb-3" id="modalTitle">{{ $siteContent['teacher_alert_title'] }}</h4><p class="text-secondary mb-4 fs-5" id="modalMessage">{{ $siteContent['teacher_alert_message'] }}</p><button type="button" class="btn teacher-orange-btn rounded-pill px-5" data-bs-dismiss="modal">{{ $siteContent['teacher_alert_continue'] }}</button></div></div></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
     <script src="{{ secure_asset('script.js?v=submit-error-details') }}"></script>
+=======
+    <script src="/script.js?v=submit-error-details"></script>
+    @php
+        $teacherPageCopy = [
+            'otpPreviewNotice' => $siteContent['teacher_otp_preview_notice'],
+            'otpError' => $siteContent['teacher_otp_error'],
+            'alertTitle' => $siteContent['teacher_alert_title'],
+            'alertMessage' => $siteContent['teacher_alert_message'],
+            'resumeSizeError' => $siteContent['teacher_resume_size_error'],
+            'submitErrorTitle' => $siteContent['teacher_submit_error_title'],
+            'submitErrorMessage' => $siteContent['teacher_submit_error_message'],
+            'submitErrorLater' => $siteContent['teacher_submit_error_later'],
+        ];
+    @endphp
+>>>>>>> c35d112 (Updated Hustle Wise website)
     <script>
+        window.teacherPageCopy = @json($teacherPageCopy);
         function teacherApplicationStep(stepNumber) {
             return document.querySelector(`[data-teacher-step="${stepNumber}"]`);
         }
         function sendTeacherOtp() {
             const email = document.getElementById('emailInput');
             if (!email.checkValidity()) { email.reportValidity(); return; }
-            document.getElementById('teacherOtpStatus').textContent = 'Preview mode: enter any 4 digits to continue. No email has been sent.';
+            document.getElementById('teacherOtpStatus').textContent = window.teacherPageCopy.otpPreviewNotice;
             document.getElementById('teacherOtp').focus();
         }
         function nextTeacherApplicationStep(currentStep) {
@@ -206,7 +254,7 @@
             }
             if (currentStep === 3) {
                 const code = document.getElementById('teacherOtp');
-                if (!/^\d{4}$/.test(code.value)) { code.setCustomValidity('Enter 4 digits to continue.'); code.reportValidity(); code.addEventListener('input', () => code.setCustomValidity(''), { once: true }); return; }
+                if (!/^\d{4}$/.test(code.value)) { code.setCustomValidity(window.teacherPageCopy.otpError); code.reportValidity(); code.addEventListener('input', () => code.setCustomValidity(''), { once: true }); return; }
                 document.getElementById('reviewFullName').textContent = document.getElementById('fullNameInput').value.trim();
                 document.getElementById('reviewPhone').textContent = document.getElementById('phoneInput').value;
                 document.getElementById('reviewEmail').textContent = document.getElementById('emailInput').value.trim();
@@ -236,8 +284,8 @@
             document.getElementById('learnerTab').setAttribute('aria-selected', !mentorSelected);
         }
         function showAlert(title, message) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('modalTitle').textContent = title || window.teacherPageCopy.alertTitle;
+            document.getElementById('modalMessage').textContent = message || window.teacherPageCopy.alertMessage;
             bootstrap.Modal.getOrCreateInstance(document.getElementById('alertModal')).show();
         }
     </script>

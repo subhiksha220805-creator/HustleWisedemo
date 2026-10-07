@@ -402,20 +402,21 @@ window.addEventListener('DOMContentLoaded', () => {
         const formattedTime = `${twelveHour}:${String(minutes).padStart(2, '0')} ${meridiem}`;
         const teacherPreference = document.querySelector('input[name="teacherPref"]:checked')?.value;
 
-        document.getElementById('demoSuccessTitle').textContent = `See you in class — ${childName}'s demo is booked!`;
+        const demoCopy = window.demoPageCopy || {};
+        document.getElementById('demoSuccessTitle').textContent = (demoCopy.successDynamicTitle || 'See you in class — :child’s demo is booked!').replace(':child', childName);
         document.getElementById('demoSuccessWeekday').textContent = weekday;
         document.getElementById('demoSuccessDate').textContent = `${ordinal(bookingDate.getDate())} ${month}`;
         document.getElementById('demoSuccessTime').textContent = formattedTime;
         document.getElementById('demoSuccessCourse').textContent = selectedCourse;
         document.getElementById('demoSuccessClassType').textContent = teacherPreference === 'group'
-            ? 'Interactive group class with an expert teacher'
-            : 'Live 1:1 class with an expert teacher';
+            ? (demoCopy.groupClassTitle || 'Interactive group class with an expert teacher')
+            : (demoCopy.oneToOneClassTitle || 'Live 1:1 class with an expert teacher');
 
         const countdownElement = document.getElementById('demoCountdown');
         const updateCountdown = () => {
             const remainingSeconds = Math.max(0, Math.floor((scheduledDemoAt.getTime() - Date.now()) / 1000));
             if (remainingSeconds === 0) {
-                countdownElement.textContent = 'Your demo is starting now!';
+                countdownElement.textContent = demoCopy.countdownNow || 'Your demo is starting now!';
                 window.clearInterval(demoCountdownInterval);
                 demoCountdownInterval = null;
                 return;
@@ -484,13 +485,14 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(async response => {
             if (!response.ok) {
                 const responseText = await response.text();
-                let message = `Booking failed (HTTP ${response.status}).`;
+                const demoCopy = window.demoPageCopy || {};
+                let message = (demoCopy.httpErrorMessage || 'Booking failed (HTTP :status).').replace(':status', response.status);
                 try {
                     const errorData = JSON.parse(responseText);
                     message = errorData.message || Object.values(errorData.errors || {}).flat()[0] || message;
                 } catch (error) {
                     console.error('The demo booking endpoint returned a non-JSON error.', error, responseText);
-                    if (response.status >= 500) message = 'The server could not save the booking. Check the Render service logs and database connection.';
+                    if (response.status >= 500) message = demoCopy.serverErrorMessage || 'The server could not save the booking. Check the service logs and database connection.';
                 }
                 throw new Error(message);
             }
@@ -500,13 +502,15 @@ window.addEventListener('DOMContentLoaded', () => {
             updateDemoConfirmation();
             document.getElementById('demoForm').classList.add('d-none');
             document.getElementById('successMessage').classList.remove('d-none');
-            document.getElementById('demoModalLabel').textContent = 'Booking Confirmed';
-            document.getElementById('demoModalSubtitle').textContent = 'Here’s what happens next';
+            const demoCopy = window.demoPageCopy || {};
+            document.getElementById('demoModalLabel').textContent = demoCopy.confirmedFormTitle || 'Booking Confirmed';
+            document.getElementById('demoModalSubtitle').textContent = demoCopy.confirmedFormDescription || 'Here’s what happens next';
             document.getElementById('demoProgress').classList.add('d-none');
         })
         .catch(error => {
             console.error('Error:', error);
-            if(typeof showAlert === 'function') showAlert('Booking not submitted', error.message || 'Please check your details and try again.');
+            const demoCopy = window.demoPageCopy || {};
+            if(typeof showAlert === 'function') showAlert(demoCopy.submitErrorTitle || 'Booking not submitted', error.message || demoCopy.submitErrorMessage || 'Please check your details and try again.');
         });
     };
 
@@ -522,7 +526,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const selectedResume = resume.files[0];
         if (!selectedResume || selectedResume.size < 1024 || selectedResume.size > 20 * 1024 * 1024) {
             if (typeof showAlert === 'function') {
-                showAlert('Error', 'Choose a PDF between 1 KB and 20 MB.');
+                showAlert(window.teacherPageCopy?.submitErrorTitle || 'Error', window.teacherPageCopy?.resumeSizeError || 'Choose a PDF between 1 KB and 20 MB.');
             }
             return;
         }
@@ -567,7 +571,8 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .then(async response => {
             if (!response.ok) {
-                let errorMessage = 'The application could not be submitted. Please try again.';
+                const teacherCopy = window.teacherPageCopy || {};
+                let errorMessage = teacherCopy.submitErrorMessage || 'The application could not be submitted. Please try again.';
                 const responseText = await response.text();
                 try {
                     // PHP startup warnings can precede Laravel's JSON response.
@@ -588,7 +593,7 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error:', error);
-            if(typeof showAlert === 'function') showAlert('Error', error.message || 'Failed to submit application. Please try again later.');
+            if(typeof showAlert === 'function') showAlert(window.teacherPageCopy?.submitErrorTitle || 'Error', error.message || window.teacherPageCopy?.submitErrorLater || 'Failed to submit application. Please try again later.');
         });
     };
 });
