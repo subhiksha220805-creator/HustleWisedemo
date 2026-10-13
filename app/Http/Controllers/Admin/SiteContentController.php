@@ -7,7 +7,6 @@ use App\Models\ContentSetting;
 use App\Support\SiteContent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -73,18 +72,28 @@ class SiteContentController extends Controller
             }
         }
 
-        DB::transaction(function () use ($values, $fields): void {
-            foreach ($fields as $key => $field) {
-                if (! array_key_exists($key, $values)) {
-                    continue;
-                }
-
-                ContentSetting::query()->updateOrCreate(
-                    ['content_key' => $key],
-                    ['content_value' => $values[$key] ?? ''],
-                );
+        $timestamp = now();
+        $records = [];
+        foreach ($fields as $key => $field) {
+            if (! array_key_exists($key, $values)) {
+                continue;
             }
-        });
+
+            $records[] = [
+                'content_key' => $key,
+                'content_value' => $values[$key] ?? '',
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ];
+        }
+
+        if ($records !== []) {
+            ContentSetting::query()->upsert(
+                $records,
+                ['content_key'],
+                ['content_value', 'updated_at'],
+            );
+        }
 
         return redirect()
             ->route('admin.content.index', ['tab' => $request->input('active_tab', 'navigation')])
