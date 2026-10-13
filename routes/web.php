@@ -54,20 +54,26 @@ Route::prefix('admin')->name('admin.')->middleware(EnsureAdminAuthenticated::cla
     Route::post('/logout', [CourseAdminController::class, 'logout'])->name('logout');
     Route::resource('courses', CourseAdminController::class)->except(['show']);
 });
-Route::delete('/demo-bookings/{demoBooking}', [DemoBookingController::class, 'destroy'])->name('demo-bookings.destroy');
+Route::delete('/demo-bookings/{demoBooking}', [DemoBookingController::class, 'destroy'])
+    ->middleware(EnsureAdminAuthenticated::class)
+    ->name('demo-bookings.destroy');
 
 Route::get('/teacher-login', function () {
     return view('teacher_login');
 })->name('teacher.join');
 Route::post('/teacher-login', [TeacherApplicationController::class, 'store']);
-Route::delete('/teacher-applications/{teacherApplication}', [TeacherApplicationController::class, 'destroy'])->name('teacher-applications.destroy');
+Route::delete('/teacher-applications/{teacherApplication}', [TeacherApplicationController::class, 'destroy'])
+    ->middleware(EnsureAdminAuthenticated::class)
+    ->name('teacher-applications.destroy');
 
 Route::get('/view-data', function () {
     return view('admin_data', [
         'demo_bookings' => DemoBooking::all(),
         'teacher_applications' => TeacherApplication::all(),
     ]);
-})->name('view-data');
+})
+    ->middleware(EnsureAdminAuthenticated::class)
+    ->name('view-data');
 
 Route::get('/view-resume/{id}', function ($id) {
     $application = TeacherApplication::findOrFail($id);
@@ -80,4 +86,5 @@ Route::get('/view-resume/{id}', function ($id) {
     return response($pdfData)
         ->header('Content-Type', 'application/pdf')
         ->header('Content-Disposition', 'inline; filename="'.str_replace(' ', '_', $application->first_name).'_resume.pdf"');
-});
+})
+    ->middleware(EnsureAdminAuthenticated::class);

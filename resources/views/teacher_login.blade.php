@@ -79,11 +79,8 @@
                 <p class="teacher-lead mt-4">Bring your knowledge, warmth and creativity to online classes that make learning meaningful. Get to know the role and apply to join our teaching community.</p>
                 <a class="btn btn-orange btn-lg rounded-pill px-4 mt-2" href="#teacher-application">Start your application <span aria-hidden="true">→</span></a>
             </div>
-<<<<<<< HEAD
-            <div class="col-lg-6"><div class="teacher-hero-photo"><img src="{{ secure_asset('teacher-high-five.png') }}" alt="Teacher celebrating a student's answer with a high five"><span class="teacher-photo-note"><i class="bi bi-heart-fill me-2" style="color:#ff7a00"></i>Make learning meaningful</span></div></div>
-=======
-                <div class="col-lg-6"><div class="teacher-hero-photo"><img src="{{ $siteContent['teacher_page_image'] }}" alt="{{ $siteContent['teacher_page_image_alt'] }}"><span class="teacher-photo-note"><i class="bi bi-heart-fill me-2" style="color:#ff7a00"></i>{{ $siteContent['teacher_photo_caption'] }}</span></div></div>
->>>>>>> c35d112 (Updated Hustle Wise website)
+            <div class="col-lg-6"><div class="teacher-hero-photo"><img src="{{ $siteContent['teacher_page_image'] }}" alt="{{ $siteContent['teacher_page_image_alt'] }}"><span class="teacher-photo-note"><i class="bi bi-heart-fill me-2" style="color:#ff7a00"></i>{{ $siteContent['teacher_photo_caption'] }}</span></div></div>
+
         </div>
         </div>
     </header>
@@ -92,15 +89,9 @@
         <section class="teacher-section" id="teacher-application">
             <div class="container" style="max-width:1000px">
                 <div class="text-center mb-4">
-<<<<<<< HEAD
-                    <span class="section-label">TAKE THE NEXT STEP</span>
-                    <h2 class="teacher-section-title mt-2">Apply to teach with us</h2>
-                    <p class="text-secondary">Share your details and resume. Our team will review your application and contact you.</p>
-=======
                     <span class="section-label">{{ $siteContent['teacher_form_section_label'] }}</span>
                     <h2 class="teacher-section-title mt-2">{{ $siteContent['teacher_application_title'] }}</h2>
                     <p class="text-secondary">{{ $siteContent['teacher_application_description'] }}</p>
->>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
                 <div class="progress mb-3" style="height:8px"><div class="progress-bar" id="teacherProgressBar" role="progressbar" style="width:14.3%" aria-valuenow="14.3" aria-valuemin="0" aria-valuemax="100"></div></div>
                 <div id="teacherSuccessMessage" class="alert alert-success text-center d-none rounded-4 p-5" role="status">
@@ -148,36 +139,22 @@
         <section class="teacher-section pt-5">
             <div class="container">
                 <div class="text-center mb-4">
-<<<<<<< HEAD
-                    <span class="section-label">THE HUSTLEWISE TEACHER</span>
-                    <h2 class="teacher-section-title mt-2">A teacher, mentor and lifelong learner</h2>
-                    <p class="text-secondary mx-auto" style="max-width:700px">Choose a role to see how teachers guide children and keep growing with HustleWise.</p>
-=======
                     <span class="section-label">{{ $siteContent['teacher_roles_section_label'] }}</span>
                     <h2 class="teacher-section-title mt-2">{{ $siteContent['teacher_roles_title'] }}</h2>
                     <p class="text-secondary mx-auto" style="max-width:700px">{{ $siteContent['teacher_roles_description'] }}</p>
->>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
                 <div class="teacher-role-tabs" role="tablist" aria-label="{{ $siteContent['teacher_roles_aria_label'] }}">
                     <button class="teacher-role-tab active" type="button" id="mentorTab" role="tab" aria-selected="true" aria-controls="mentorPanel" onclick="showTeacherRole('mentor')">{{ $siteContent['teacher_mentor_tab'] }}</button>
                     <button class="teacher-role-tab" type="button" id="learnerTab" role="tab" aria-selected="false" aria-controls="learnerPanel" onclick="showTeacherRole('learner')">{{ $siteContent['teacher_learner_tab'] }}</button>
                 </div>
                 <div class="teacher-role-panel active" id="mentorPanel" role="tabpanel" aria-labelledby="mentorTab">
-<<<<<<< HEAD
-                    <img class="teacher-role-image" src="{{ secure_asset('mentor-teacher-student.png') }}" alt="Teacher mentoring a student">
-                    <div class="teacher-role-copy"><span class="section-label">YOUR IMPACT</span><h3 class="h3 fw-bold mt-2">As a mentor</h3><p class="text-secondary">Be the encouraging guide who helps each child feel ready to try.</p><ul class="text-secondary mb-0"><li class="mb-2">Lead friendly online lessons from home.</li><li class="mb-2">Coach children through practice and helpful feedback.</li><li>Celebrate progress and growing confidence.</li></ul></div>
-                </div>
-                <div class="teacher-role-panel" id="learnerPanel" role="tabpanel" aria-labelledby="learnerTab" hidden>
-                    <img class="teacher-role-image" src="{{ secure_asset('learner-graduate.png') }}" alt="Learner celebrating a graduation milestone">
-                    <div class="teacher-role-copy"><span class="section-label">GROW WITH US</span><h3 class="h3 fw-bold mt-2">As a learner</h3><p class="text-secondary">Keep discovering better ways to support young learners.</p><ul class="text-secondary mb-0"><li class="mb-2">Join onboarding and practical teaching guidance.</li><li class="mb-2">Build your classroom and online teaching skills.</li><li>Share ideas with the HustleWise teaching community.</li></ul></div>
-=======
                     <img class="teacher-role-image" src="{{ $siteContent['teacher_mentor_image'] }}" alt="{{ $siteContent['teacher_mentor_image_alt'] }}">
                     <div class="teacher-role-copy"><span class="section-label">{{ $siteContent['teacher_mentor_section_label'] }}</span><h3 class="h3 fw-bold mt-2">{{ $siteContent['teacher_mentor_heading'] }}</h3><p class="text-secondary">{{ $siteContent['teacher_mentor_description'] }}</p><ul class="text-secondary mb-0"><li class="mb-2">{{ $siteContent['teacher_mentor_bullet_one'] }}</li><li class="mb-2">{{ $siteContent['teacher_mentor_bullet_two'] }}</li><li>{{ $siteContent['teacher_mentor_bullet_three'] }}</li></ul></div>
                 </div>
                 <div class="teacher-role-panel" id="learnerPanel" role="tabpanel" aria-labelledby="learnerTab" hidden>
                     <img class="teacher-role-image" src="{{ $siteContent['teacher_learner_image'] }}" alt="{{ $siteContent['teacher_learner_image_alt'] }}">
                     <div class="teacher-role-copy"><span class="section-label">{{ $siteContent['teacher_learner_section_label'] }}</span><h3 class="h3 fw-bold mt-2">{{ $siteContent['teacher_learner_heading'] }}</h3><p class="text-secondary">{{ $siteContent['teacher_learner_description'] }}</p><ul class="text-secondary mb-0"><li class="mb-2">{{ $siteContent['teacher_learner_bullet_one'] }}</li><li class="mb-2">{{ $siteContent['teacher_learner_bullet_two'] }}</li><li>{{ $siteContent['teacher_learner_bullet_three'] }}</li></ul></div>
->>>>>>> c35d112 (Updated Hustle Wise website)
+                </div>
                 </div>
             </div>
         </section>
@@ -185,15 +162,9 @@
         <section class="teacher-section teacher-requirements">
             <div class="container">
                 <div class="text-center mb-5">
-<<<<<<< HEAD
-                    <span class="section-label">WHAT HELPS YOU SUCCEED</span>
-                    <h2 class="teacher-section-title mt-2">What we look for in a teacher</h2>
-                    <p class="text-secondary">A supportive attitude and a love of helping children learn matter to us.</p>
-=======
                     <span class="section-label">{{ $siteContent['teacher_requirements_section_label'] }}</span>
                     <h2 class="teacher-section-title mt-2">{{ $siteContent['teacher_requirements_title'] }}</h2>
                     <p class="text-secondary">{{ $siteContent['teacher_requirements_description'] }}</p>
->>>>>>> c35d112 (Updated Hustle Wise website)
                 </div>
                 <div class="row g-3">
                     <div class="col-sm-6 col-lg-4"><div class="teacher-card"><div class="teacher-icon mb-3">🎓</div><h3 class="h5 fw-bold">{{ $siteContent['teacher_requirement_education_title'] }}</h3><p class="text-secondary mb-0">{{ $siteContent['teacher_requirement_education_description'] }}</p></div></div>
@@ -214,10 +185,7 @@
         <div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4 shadow"><div class="modal-body text-center p-5"><h4 class="fw-bold mb-3" id="modalTitle">{{ $siteContent['teacher_alert_title'] }}</h4><p class="text-secondary mb-4 fs-5" id="modalMessage">{{ $siteContent['teacher_alert_message'] }}</p><button type="button" class="btn teacher-orange-btn rounded-pill px-5" data-bs-dismiss="modal">{{ $siteContent['teacher_alert_continue'] }}</button></div></div></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<<<<<<< HEAD
     <script src="{{ secure_asset('script.js?v=submit-error-details') }}"></script>
-=======
-    <script src="/script.js?v=submit-error-details"></script>
     @php
         $teacherPageCopy = [
             'otpPreviewNotice' => $siteContent['teacher_otp_preview_notice'],
@@ -230,7 +198,6 @@
             'submitErrorLater' => $siteContent['teacher_submit_error_later'],
         ];
     @endphp
->>>>>>> c35d112 (Updated Hustle Wise website)
     <script>
         window.teacherPageCopy = @json($teacherPageCopy);
         function teacherApplicationStep(stepNumber) {

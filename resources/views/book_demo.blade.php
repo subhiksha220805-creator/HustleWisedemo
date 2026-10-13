@@ -4,15 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<<<<<<< HEAD
-    <meta name="description" content="Book a free HustleWise demo class and discover a fun way for your child to learn.">
-    <title>Book a Free Demo | HustleWise</title>
-    <link rel="icon" type="image/png" href="{{ secure_asset('logo.png') }}">
-=======
     <meta name="description" content="{{ $siteContent['demo_meta_description'] }}">
     <title>{{ $siteContent['nav_demo'] }} | {{ $siteContent['site_title'] }}</title>
-    <link rel="icon" type="image/png" href="/logo.png">
->>>>>>> c35d112 (Updated Hustle Wise website)
+    <link rel="icon" type="image/png" href="{{ secure_asset('logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -73,13 +67,8 @@
 <body class="with-demo-bottom-bar">
     <nav class="navbar demo-nav shadow-sm sticky-top">
         <div class="container py-2 d-flex justify-content-between align-items-center">
-<<<<<<< HEAD
-            <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="{{ secure_asset('logo.png') }}" alt="HustleWise" height="46"><span class="text-dark">Hustle<span>Wise</span></span></a>
-            <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">← Back to home</a>
-=======
-            <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="/logo.png" alt="HustleWise" height="46"><span class="brand-wordmark"><span class="brand-hustle">Hustle</span><span class="brand-wise">Wise</span></span></a>
+            <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="{{ secure_asset('logo.png') }}" alt="HustleWise" height="46"><span class="brand-wordmark"><span class="brand-hustle">Hustle</span><span class="brand-wise">Wise</span></span></a>
             <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">{{ $siteContent['demo_back_home'] }}</a>
->>>>>>> c35d112 (Updated Hustle Wise website)
         </div>
     </nav>
 
@@ -139,17 +128,10 @@
                                 <div class="d-flex justify-content-end"><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(1,2)">{{ $siteContent['demo_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
                             </div>
                             <div class="demo-step" id="demoStep2">
-<<<<<<< HEAD
-                                <h3 class="h5 fw-bold mb-3">2. Choose a class style</h3>
-                                <fieldset class="mb-3"><legend class="form-label fs-6">Choose how your child would like to learn</legend><div class="demo-mode-options"><label class="demo-mode-card"><input type="radio" name="teacherPref" value="1 on 1" checked><img src="{{ secure_asset('demo-one-to-one.png') }}" alt=""><span class="demo-mode-copy"><strong>One-on-one</strong><small>Personal attention in a focused lesson.</small></span></label><label class="demo-mode-card"><input type="radio" name="teacherPref" value="group"><img src="{{ secure_asset('demo-group-class.png') }}" alt=""><span class="demo-mode-copy"><strong>Group class</strong><small>Learn and share ideas with other students.</small></span></label></div></fieldset>
-                                <label for="demoFeedback" class="form-label">Anything you’d like us to know? <span class="text-secondary">(optional)</span></label><textarea class="form-control mb-4" id="demoFeedback" rows="3" placeholder="Share a goal or learning preference"></textarea>
-                                <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(2,1)">← Back</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(2,3)">Next <i class="bi bi-arrow-right"></i></button></div>
-=======
                             <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_class_title'] }}</h3>
                                 <fieldset class="mb-3"><legend class="form-label fs-6">{{ $siteContent['demo_class_style_question'] }}</legend><div class="demo-mode-options"><label class="demo-mode-card"><input type="radio" name="teacherPref" value="1 on 1" checked><img src="{{ $siteContent['demo_one_image'] }}" alt="{{ $siteContent['demo_one_title'] }} class"><span class="demo-mode-copy"><strong>{{ $siteContent['demo_one_title'] }}</strong><small>{{ $siteContent['demo_one_description'] }}</small></span></label><label class="demo-mode-card"><input type="radio" name="teacherPref" value="group"><img src="{{ $siteContent['demo_group_image'] }}" alt="{{ $siteContent['demo_group_title'] }}"><span class="demo-mode-copy"><strong>{{ $siteContent['demo_group_title'] }}</strong><small>{{ $siteContent['demo_group_description'] }}</small></span></label></div></fieldset>
                                 <label for="demoFeedback" class="form-label">{{ $siteContent['demo_feedback_label'] }} <span class="text-secondary">{{ $siteContent['demo_optional_label'] }}</span></label><textarea class="form-control mb-4" id="demoFeedback" rows="3" placeholder="{{ $siteContent['demo_feedback_placeholder'] }}"></textarea>
                                 <div class="d-flex justify-content-between"><button type="button" class="btn btn-outline-secondary rounded-pill px-4" onclick="demoPrevStep(2,1)">{{ $siteContent['demo_back_button'] }}</button><button type="button" class="btn btn-orange btn-lg rounded-pill px-4" onclick="demoNextStep(2,3)">{{ $siteContent['demo_next_button'] }} <i class="bi bi-arrow-right"></i></button></div>
->>>>>>> c35d112 (Updated Hustle Wise website)
                             </div>
                             <div class="demo-step" id="demoStep3">
                                 <h3 class="h5 fw-bold mb-3">{{ $siteContent['demo_step_level_title'] }}</h3>
@@ -179,10 +161,7 @@
     <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4 shadow"><div class="modal-body text-center p-5"><h4 class="fw-bold mb-3" id="modalTitle">{{ $siteContent['demo_alert_title'] }}</h4><p class="text-secondary mb-4 fs-5" id="modalMessage">{{ $siteContent['demo_alert_message'] }}</p><button type="button" class="btn btn-orange rounded-pill px-5" data-bs-dismiss="modal">{{ $siteContent['demo_continue_button'] }}</button></div></div></div></div>
     @include('partials.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<<<<<<< HEAD
     <script src="{{ secure_asset('script.js?v=submit-error-details') }}"></script>
-=======
-    <script src="/script.js?v=submit-error-details"></script>
     @php
         $demoPageCopy = [
             'classRequiredTitle' => $siteContent['demo_alert_class_title'],
@@ -199,7 +178,6 @@
             'serverErrorMessage' => $siteContent['demo_server_error_message'],
         ];
     @endphp
->>>>>>> c35d112 (Updated Hustle Wise website)
     <script>
         let currentDemoStep = 1;
         window.demoPageCopy = @json($demoPageCopy);

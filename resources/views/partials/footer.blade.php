@@ -2,13 +2,8 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-<<<<<<< HEAD
-                <a href="{{ url('/') }}" class="h3 fw-bold text-decoration-none"><span style="color:#333">Hustle</span><span style="color:#ff7e27">Wise</span></a>
-                <p class="text-secondary mt-3">Helping children learn, explore and grow through fun educational experiences.</p>
-=======
                 <a href="{{ url('/') }}" class="h3 fw-bold text-decoration-none brand-wordmark"><span class="brand-hustle" style="color:#20262e">Hustle</span><span class="brand-wise" style="color:#ff7a00">Wise</span></a>
                 <p class="text-secondary mt-3">{{ $siteContent['footer_description'] }}</p>
->>>>>>> c35d112 (Updated Hustle Wise website)
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="fw-bold">{{ $siteContent['footer_quick_links_title'] }}</h5>
