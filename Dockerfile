@@ -52,6 +52,7 @@ RUN printf '%s\n' \
 'server {' \
 '    listen 80;' \
 '    server_name _;' \
+'    client_max_body_size 52M;' \
 '' \
 '    root /var/www/html/public;' \
 '    index index.php index.html;' \
@@ -81,4 +82,4 @@ EXPOSE 80
 
 # Create the default SQLite database when SQLite is selected, apply pending
 # schema migrations, then start PHP-FPM and Nginx.
-CMD ["sh", "-c", "if [ \"${DB_CONNECTION:-sqlite}\" = \"sqlite\" ]; then SQLITE_PATH=\"${DB_DATABASE:-database/database.sqlite}\"; if [ \"$SQLITE_PATH\" != \":memory:\" ]; then mkdir -p \"$(dirname \"$SQLITE_PATH\")\" && touch \"$SQLITE_PATH\" && chown www-data:www-data \"$SQLITE_PATH\"; fi; fi && php artisan migrate --force && php-fpm -D && nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "if [ \"${DB_CONNECTION:-sqlite}\" = \"sqlite\" ]; then SQLITE_PATH=\"${DB_DATABASE:-database/database.sqlite}\"; if [ \"$SQLITE_PATH\" != \":memory:\" ]; then mkdir -p \"$(dirname \"$SQLITE_PATH\")\" && touch \"$SQLITE_PATH\" && chown www-data:www-data \"$SQLITE_PATH\"; fi; fi && php artisan storage:link --force && php artisan migrate --force && php-fpm -D && nginx -g 'daemon off;'"]

@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description"
-        content="HustleWise is a fun educational website where children can learn mathematics, science, English and creative skills through interactive activities.">
+    <meta name="description" content="{{ $siteContent['site_description'] }}">
     <meta name="keywords"
         content="kids education, children learning, educational website, kids activities, mathematics, science, English">
     <meta name="author" content="HustleWise">
-    <title>HustleWise</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>{{ $siteContent['site_title'] }}</title>
+    <link rel="icon" type="image/png" href="{{ $siteContent['site_logo'] }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,7 +24,7 @@
     <nav class="navbar navbar-expand-xl bg-white shadow-sm sticky-top hustle-navbar">
       <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="logo.png"
+                <img src="{{ $siteContent['site_logo'] }}"
                     alt="HustleWise Logo"
                     height="68">
             </a>
@@ -41,10 +40,10 @@
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link active"
-                            href="#home">Home</a>
+                            href="#home">{{ $siteContent['nav_home'] }}</a>
                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#courses" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
+                        <a class="nav-link dropdown-toggle" href="#courses" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ $siteContent['nav_courses'] }}</a>
                         <ul class="dropdown-menu dropdown-menu-end course-nav-menu" aria-labelledby="coursesDropdown">
                             @foreach ([
                                 'public-speaking' => ['bi-mic-fill', 'K to 12 · Build confident voices', 'Public Speaking'],
@@ -66,30 +65,30 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                            href="#activities">Activities</a>
+                            href="#activities">{{ $siteContent['nav_activities'] }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
                             href="#joiners">
-                            Teach Online
+                            {{ $siteContent['nav_teach'] }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
                             href="#testimonials">
-                            Testimonials
+                            {{ $siteContent['nav_testimonials'] }}
                         </a>
                     </li>
                     <li class="nav-item ms-lg-3">
                         <a href="{{ route('demo.book') }}"
                             class="btn btn-orange">
-                            Book your free demo
+                            {{ $siteContent['nav_demo'] }}
                         </a>
                     </li>
                     <li class="nav-item ms-lg-2">
                         <a href="{{ route('admin.login') }}"
                             class="btn btn-outline-secondary">
-                            Admin Login
+                            {{ $siteContent['nav_admin'] }}
                         </a>
                     </li>
                 </ul>
@@ -114,7 +113,7 @@
 
                         <span>✨</span>
                         <span class="fw-semibold">
-                            Learning Made Fun
+                            {{ $siteContent['hero_badge'] }}
                         </span>
 
                     </div>
@@ -123,11 +122,11 @@
                     <!-- Heading -->
                     <h1 class="display-3 fw-bold text-dark lh-1 mb-4">
 
-                        Where Learning
+                        {{ $siteContent['hero_title_first'] }}
 
                         <span class="d-block"
                               style="color:#ff7e27;">
-                            Comes Alive.
+                            {{ $siteContent['hero_title_second'] }}
                         </span>
 
                     </h1>
@@ -137,8 +136,7 @@
                     <p class="fs-5 text-dark lh-lg mb-4"
                        style="max-width:600px;">
 
-                        What if learning wasn't limited to a classroom,
-                        a textbook, or just one skill?
+                        {{ $siteContent['hero_question'] }}
 
                     </p>
 
@@ -147,17 +145,7 @@
                     <p class="text-secondary lh-lg mb-4"
                        style="font-size:17px; max-width:620px;">
 
-                        At <strong class="text-dark">HustleWise</strong>,
-                        we bring together the things that help you learn,
-                        create, communicate and grow — from
-                        <strong class="text-dark">
-                            English, Maths and Coding
-                        </strong>
-                        to
-                        <strong class="text-dark">
-                            Public Speaking, Music, Art, Crochet,
-                            Creative Writing, Business English and Junior MBA.
-                        </strong>
+                        {{ $siteContent['hero_description'] }}
 
                     </p>
 
@@ -167,15 +155,15 @@
                          style="border-color:#ff7e27 !important;">
 
                         <div class="fw-semibold text-dark mb-2">
-                            Different interests.
+                            {{ $siteContent['hero_point_one'] }}
                         </div>
 
                         <div class="fw-semibold text-dark mb-2">
-                            Different strengths.
+                            {{ $siteContent['hero_point_two'] }}
                         </div>
 
                         <div class="fw-semibold text-dark">
-                            Different journeys.
+                            {{ $siteContent['hero_point_three'] }}
                         </div>
 
                     </div>
@@ -188,7 +176,7 @@
                            class="btn btn-lg rounded-pill px-4 py-3 fw-semibold text-white shadow-sm"
                            style="background:#ff7e27;">
 
-                            Book your free demo
+                            {{ $siteContent['hero_button'] }}
                             <span class="ms-1">→</span>
 
                         </a>
@@ -237,9 +225,9 @@
                             z-index:2;
                          ">
 
-                        <img src="/home-learning-group.png"
+                        <img src="{{ $siteContent['hero_image'] }}"
                              class="img-fluid rounded-4"
-                             alt="Teacher helping students learn together in a classroom">
+                             alt="{{ $siteContent['hero_image_alt'] }}">
 
                     </div>
 
@@ -335,26 +323,24 @@
 
             <div class="col-lg-6">
 
-                <img src="/images/classroom.jpg"
+                <img src="{{ $siteContent['about_image'] }}"
                     class="img-fluid rounded-4 shadow"
-                    alt="Teacher helping children learn">
+                    alt="{{ $siteContent['about_image_alt'] }}">
 
             </div>
 
             <div class="col-lg-6">
 
                 <span class="section-label">
-                    ABOUT HUSTLEWISE
+                    {{ $siteContent['about_label'] }}
                 </span>
 
                 <h2 class="display-6 fw-bold mt-3">
-                    One place to explore them all.
+                    {{ $siteContent['about_title'] }}
                 </h2>
 
                 <p class="text-secondary mt-4">
-                    Learn something new.
-                    Discover what you're good at.
-                    Become a little more you.
+                    {{ $siteContent['about_description'] }}
                 </p>
 
                 <div class="row mt-4">
@@ -362,12 +348,12 @@
                     <div class="col-6">
 
                         <h3 class="fw-bold orange-text count-up"
-                            data-count="100">
+                            data-count="{{ $siteContent['about_stat_one'] }}">
                             0+
                         </h3>
 
                         <p class="text-secondary">
-                            Learning Activities
+                            {{ $siteContent['about_stat_one_label'] }}
                         </p>
 
                     </div>
@@ -375,12 +361,12 @@
                     <div class="col-6">
 
                         <h3 class="fw-bold orange-text count-up"
-                            data-count="20">
+                            data-count="{{ $siteContent['about_stat_two'] }}">
                             0+
                         </h3>
 
                         <p class="text-secondary">
-                            Learning Topics
+                            {{ $siteContent['about_stat_two_label'] }}
                         </p>
 
                     </div>
@@ -391,7 +377,7 @@
 
                     <a href="#courses"
                         class="btn btn-orange">
-                        Explore HustleWise →
+                        {{ $siteContent['about_button'] }}
                     </a>
 
                 </div>
@@ -408,14 +394,14 @@
        <div class="container text-center">
             <div class="parallax-content">
                 <h2 class="display-5 fw-bold text-white">
-                    Discover • Explore • Learn
+                    {{ $siteContent['parallax_title'] }}
                 </h2>
                 <p class="text-white fs-5 mt-3">
-                    Every day is a new opportunity to learn something amazing!
+                    {{ $siteContent['parallax_description'] }}
                 </p>
                 <a href="#learn"
                     class="btn btn-light btn-lg mt-3">
-                    Discover More
+                    {{ $siteContent['parallax_button'] }}
                 </a>
             </div>
         </div>
@@ -689,62 +675,61 @@
         <div class="container py-5">
             <div class="text-center mb-5" id="activitiesIntro">
                 <span class="section-label">
-                    FUN ACTIVITIES
+                    {{ $siteContent['activities_label'] }}
                 </span>
                 <h2 class="display-6 fw-bold mt-2">
-                    Learn Through Play
+                    {{ $siteContent['activities_title'] }}
                 </h2>
                 <p class="text-secondary">
-                    Learning becomes exciting when children can play,
-                    explore and experiment.
+                    {{ $siteContent['activities_description'] }}
                 </p>
             </div>
             <div class="row g-4" id="activityList">
                 <div class="col-md-4">
                     <div class="activity-card text-center p-5 bg-white rounded-4 shadow-sm">
                         <div class="activity-icon">
-                            🧠
+                            <i class="bi {{ $siteContent['activity_quiz_icon'] }}"></i>
                         </div>
                         <h3 class="h4 fw-bold mt-4">
-                            Brain Quiz
+                            {{ $siteContent['activity_quiz_title'] }}
                         </h3>
                         <p class="text-secondary">
-                            Test your knowledge with fun and simple quizzes.
+                            {{ $siteContent['activity_quiz_description'] }}
                         </p>
                         <button class="btn btn-orange" type="button" data-activity-start="quiz">
-                            Start Quiz
+                            {{ $siteContent['activity_quiz_button'] }}
                         </button>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activity-card text-center p-5 bg-white rounded-4 shadow-sm">
                         <div class="activity-icon">
-                            🧩
+                            <i class="bi {{ $siteContent['activity_puzzle_icon'] }}"></i>
                         </div>
                         <h3 class="h4 fw-bold mt-4">
-                            Puzzle Time
+                            {{ $siteContent['activity_puzzle_title'] }}
                         </h3>
                         <p class="text-secondary">
-                            Solve interesting puzzles and improve logical thinking.
+                            {{ $siteContent['activity_puzzle_description'] }}
                         </p>
                         <button class="btn btn-orange" type="button" data-activity-start="puzzles">
-                            Play Now
+                            {{ $siteContent['activity_puzzle_button'] }}
                         </button>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activity-card text-center p-5 bg-white rounded-4 shadow-sm">
                         <div class="activity-icon">
-                            📚
+                            <i class="bi {{ $siteContent['activity_story_icon'] }}"></i>
                         </div>
                         <h3 class="h4 fw-bold mt-4">
-                            Story Time
+                            {{ $siteContent['activity_story_title'] }}
                         </h3>
                         <p class="text-secondary">
-                            Read fun stories and discover new characters.
+                            {{ $siteContent['activity_story_description'] }}
                         </p>
                         <button class="btn btn-orange" type="button" data-activity-start="stories">
-                            Read Stories
+                            {{ $siteContent['activity_story_button'] }}
                         </button>
                     </div>
                 </div>
@@ -773,25 +758,21 @@
         <div class="container py-5">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <span class="section-label">JOIN HustleWise</span>
-                    <h2 class="display-6 fw-bold mt-3">Become a Teacher</h2>
+                    <span class="section-label">{{ $siteContent['teacher_label'] }}</span>
+                    <h2 class="display-6 fw-bold mt-3">{{ $siteContent['teacher_title'] }}</h2>
                    <p class="text-secondary mt-4">
-                        Share your knowledge and inspire young minds with
-                        HustleWise. Join our learning community and help
-                        children discover, learn and grow.
+                        {{ $siteContent['teacher_description'] }}
                     </p>
                     <p class="text-secondary">
-                        Create engaging lessons, activities and learning
-                        experiences for children while making education
-                        fun and meaningful.
+                        {{ $siteContent['teacher_description_two'] }}
                     </p>
                     <a href="{{ route('teacher.join') }}"
-                        class="btn btn-orange mt-3">Join as a Teacher →</a>
+                        class="btn btn-orange mt-3">{{ $siteContent['teacher_button'] }}</a>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="/teacher_image.jpg"
+                    <img src="{{ $siteContent['teacher_image'] }}"
                         class="img-fluid rounded-4 shadow"
-                        alt="Teacher holding orange book">
+                        alt="{{ $siteContent['teacher_image_alt'] }}">
                 </div>
             </div>
         </div>
@@ -800,10 +781,10 @@
     <section id="testimonials" class="testimonials-section py-5">
         <div class="container py-5">
             <div class="text-center mb-5">
-                <span class="section-label">TESTIMONIALS</span>
-                <h2 class="display-6 fw-bold mt-3">What Parents Say</h2>
+                <span class="section-label">{{ $siteContent['testimonials_label'] }}</span>
+                <h2 class="display-6 fw-bold mt-3">{{ $siteContent['testimonials_title'] }}</h2>
                 <p class="text-secondary mt-3 mx-auto testimonials-intro">
-                    Hear how families feel about learning with HustleWise.
+                    {{ $siteContent['testimonials_description'] }}
                 </p>
             </div>
             <div class="row g-4">
@@ -812,10 +793,16 @@
                         <div class="testimonial-rating" aria-label="Rated 5 out of 5 stars">
                             <span class="testimonial-stars" aria-hidden="true">★★★★★</span><span class="testimonial-score">5.0</span>
                         </div>
-                        <blockquote>“My child enjoys every class and is excited to learn something new each time.”</blockquote>
+                        @if (!empty($siteContent['testimonial_video_one']))
+                            <video class="testimonial-video" controls playsinline preload="metadata">
+                                <source src="{{ $siteContent['testimonial_video_one'] }}">
+                                Your browser cannot play this video.
+                            </video>
+                        @endif
+                        <blockquote>{{ $siteContent['testimonial_one'] }}</blockquote>
                         <div class="testimonial-author">
                             <span class="testimonial-avatar" aria-hidden="true">P</span>
-                            <div><strong>HustleWise Parent</strong><span>Parent review</span></div>
+                            <div><strong>{{ $siteContent['testimonial_author'] }}</strong><span>{{ $siteContent['testimonial_author_role'] }}</span></div>
                         </div>
                     </article>
                 </div>
@@ -824,10 +811,16 @@
                         <div class="testimonial-rating" aria-label="Rated 5 out of 5 stars">
                             <span class="testimonial-stars" aria-hidden="true">★★★★★</span><span class="testimonial-score">5.0</span>
                         </div>
-                        <blockquote>“The fun activities make learning easy to understand and keep my child engaged.”</blockquote>
+                        @if (!empty($siteContent['testimonial_video_two']))
+                            <video class="testimonial-video" controls playsinline preload="metadata">
+                                <source src="{{ $siteContent['testimonial_video_two'] }}">
+                                Your browser cannot play this video.
+                            </video>
+                        @endif
+                        <blockquote>{{ $siteContent['testimonial_two'] }}</blockquote>
                         <div class="testimonial-author">
                             <span class="testimonial-avatar" aria-hidden="true">P</span>
-                            <div><strong>HustleWise Parent</strong><span>Parent review</span></div>
+                            <div><strong>{{ $siteContent['testimonial_author'] }}</strong><span>{{ $siteContent['testimonial_author_role'] }}</span></div>
                         </div>
                     </article>
                 </div>
@@ -836,10 +829,16 @@
                         <div class="testimonial-rating" aria-label="Rated 5 out of 5 stars">
                             <span class="testimonial-stars" aria-hidden="true">★★★★★</span><span class="testimonial-score">5.0</span>
                         </div>
-                        <blockquote>“I have seen my child become more confident and curious since joining HustleWise.”</blockquote>
+                        @if (!empty($siteContent['testimonial_video_three']))
+                            <video class="testimonial-video" controls playsinline preload="metadata">
+                                <source src="{{ $siteContent['testimonial_video_three'] }}">
+                                Your browser cannot play this video.
+                            </video>
+                        @endif
+                        <blockquote>{{ $siteContent['testimonial_three'] }}</blockquote>
                         <div class="testimonial-author">
                             <span class="testimonial-avatar" aria-hidden="true">P</span>
-                            <div><strong>HustleWise Parent</strong><span>Parent review</span></div>
+                            <div><strong>{{ $siteContent['testimonial_author'] }}</strong><span>{{ $siteContent['testimonial_author_role'] }}</span></div>
                         </div>
                     </article>
                 </div>
@@ -850,199 +849,18 @@
     <section class="cta-section py-5">
         <div class="container py-5 text-center">
             <h2 class="display-6 fw-bold text-white">
-                Ready to Start Your Learning Adventure?
+                {{ $siteContent['final_title'] }}
             </h2>
             <p class="text-white mt-3">
-                Explore exciting lessons and activities today!
+                {{ $siteContent['final_description'] }}
             </p>
             <a href="{{ route('demo.book') }}"
                 class="btn btn-light btn-lg mt-3">
-                Book your free demo 🚀
+                {{ $siteContent['final_button'] }}
             </a>
         </div>
     </section>
-<!-- footer -->
-    <footer class="py-5"
-        style="background-color:#ffffff; border-top:4px solid #ff7e27;">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="fw-bold"
-                        style="color:#ff7e27;">
-                        <span style="color:#333;">Hustle</span>Wise
-                    </h3>
-                    <p class="text-secondary mt-3">
-                        Helping children learn, explore and grow through fun
-                        educational experiences.
-                    </p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold"
-                        style="color:#333;">
-                        Quick Links
-                    </h5>
-                    <ul class="list-unstyled mt-3">
-                        <li class="mb-2">
-                            <a href="#home"
-                                class="text-secondary text-decoration-none">
-                                Home
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Courses
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#activities"
-                                class="text-secondary text-decoration-none">
-                                Activities
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#joiners"
-                                class="text-secondary text-decoration-none">
-                                Teach Online
-                            </a>
-                        </li>
-                           <li class="mb-2">
-                           <a href="#testimonials"
-                                class="text-secondary text-decoration-none">
-                                Testimonials
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold"
-                        style="color:#333;">
-                        Courses
-                    </h5>
-                    <ul class="list-unstyled mt-3">
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Public Speaking
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Creative Writing
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Coding
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                HustleWise English
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Mathematics
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Business English
-                            </a>
-                        </li>
-                         <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                  Music
-
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#courses"
-                                class="text-secondary text-decoration-none">
-                                Spoken English
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold"
-                        style="color:#333;">
-                        Contact Us
-                    </h5>
-                    <p class="text-secondary mt-3">
-                        <i class="bi bi-geo-alt-fill me-2"
-                            style="color:#ff7e27;"></i>
-                        Chennai, Tamil Nadu, India
-                    </p>
-                    <p>
-                        <a href="mailto:hello@hustlewise.in"
-                            class="text-secondary text-decoration-none">
-                            <i class="bi bi-envelope-fill me-2"
-                                style="color:#ff7e27;"></i>
-                            hello@hustlewise.in
-                        </a>
-                    </p>
-                    <p>
-                        <a href="tel:+918220842946, +918098509440"
-                            class="text-secondary text-decoration-none">
-                            <i class="bi bi-telephone-fill me-2"
-                                style="color:#ff7e27;"></i>
-                            +91 8220842946, +91 8098509440
-                        </a>
-                    </p>
-                    <div class="mt-4">
-                        <a href="https://www.linkedin.com/"
-                            target="_blank"
-                            class="fs-3 me-3 text-decoration-none"
-                            style="color:#0A66C2;">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                        <a href="https://wa.me/919876543210"
-                            target="_blank"
-                            class="fs-3 me-3 text-decoration-none"
-                            style="color:#25D366;">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
-                        <a href="https://www.instagram.com/"
-                            target="_blank"
-                            class="fs-3 me-3 text-decoration-none"
-                            style="color:#E4405F;">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/"
-                            target="_blank"
-                            class="fs-3 me-3 text-decoration-none"
-                            style="color:#1877F2;">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://www.youtube.com/"
-                            target="_blank"
-                            class="fs-3 me-3 text-decoration-none"
-                            style="color:#FF0000;">
-                            <i class="bi bi-youtube"></i>
-                        </a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Chennai,Tamil Nadu,India"
-                            target="_blank"
-                            class="fs-3 text-decoration-none"
-                            style="color:#EA4335;">
-                            <i class="bi bi-geo-alt-fill"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <p class="text-center text-secondary mb-0">
-                © 2026 HustleWise. All Rights Reserved.
-            </p>
-        </div>
-    </footer>
+@include('partials.footer')
 <!-- vourse detail modal -->
     <div class="modal fade course-modal"
         id="courseDetailsModal"

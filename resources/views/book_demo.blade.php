@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="{{ $siteContent['demo_meta_description'] }}">
     <title>{{ $siteContent['nav_demo'] }} | {{ $siteContent['site_title'] }}</title>
-    <link rel="icon" type="image/png" href="{{ secure_asset('logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ $siteContent['site_logo'] }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -67,16 +67,16 @@
 <body class="with-demo-bottom-bar">
     <nav class="navbar demo-nav shadow-sm sticky-top">
         <div class="container py-2 d-flex justify-content-between align-items-center">
-            <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="{{ secure_asset('logo.png') }}" alt="HustleWise" height="46"><span class="brand-wordmark"><span class="brand-hustle">Hustle</span><span class="brand-wise">Wise</span></span></a>
+            <a class="demo-page-brand d-flex align-items-center gap-2" href="{{ url('/') }}"><img src="{{ $siteContent['site_logo'] }}" alt="HustleWise" height="46"><span class="brand-wordmark"><span class="brand-hustle">Hustle</span><span class="brand-wise">Wise</span></span></a>
             <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">{{ $siteContent['demo_back_home'] }}</a>
         </div>
     </nav>
 
     <header class="demo-hero">
         <div class="container position-relative">
-            <span class="badge rounded-pill px-3 py-2 mb-3" style="background:#fff0df;color:#dc6800">A LITTLE TASTE OF BIG IDEAS</span>
-            <h1>Learning can feel like <span>an adventure.</span></h1>
-            <p class="demo-lead mt-3 mb-0">Choose a course and a convenient time. We’ll help your child explore a live class with a friendly HustleWise teacher.</p>
+            <span class="badge rounded-pill px-3 py-2 mb-3" style="background:#fff0df;color:#dc6800">{{ $siteContent['demo_badge'] }}</span>
+            <h1>{{ $siteContent['demo_title'] }}</h1>
+            <p class="demo-lead mt-3 mb-0">{{ $siteContent['demo_description'] }}</p>
             <div class="demo-art" aria-hidden="true">📚</div><span class="demo-spark one" aria-hidden="true">✦</span><span class="demo-spark two" aria-hidden="true">✧</span>
         </div>
     </header>

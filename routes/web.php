@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CourseAdminController;
+use App\Http\Controllers\Admin\SiteContentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DemoBookingController;
 use App\Http\Controllers\TeacherApplicationController;
@@ -47,10 +49,17 @@ Route::get('/book-demo', function () {
 })->name('demo.book');
 Route::post('/book-demo', [DemoBookingController::class, 'store']);
 Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+Route::get('/admin', function () {
+    return redirect()->route(session('admin_authenticated') ? 'admin.dashboard' : 'admin.login');
+});
 Route::get('/admin/login', [CourseAdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [CourseAdminController::class, 'authenticate'])->middleware('throttle:5,1')->name('admin.authenticate');
 Route::prefix('admin')->name('admin.')->middleware(EnsureAdminAuthenticated::class)->group(function () {
-    Route::redirect('/', '/admin/courses');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/demo-bookings', [AdminDashboardController::class, 'demoBookings'])->name('demo-bookings.index');
+    Route::get('/teacher-applications', [AdminDashboardController::class, 'teacherApplications'])->name('teacher-applications.index');
+    Route::get('/content', [SiteContentController::class, 'index'])->name('content.index');
+    Route::put('/content', [SiteContentController::class, 'update'])->name('content.update');
     Route::post('/logout', [CourseAdminController::class, 'logout'])->name('logout');
     Route::resource('courses', CourseAdminController::class)->except(['show']);
 });
@@ -87,4 +96,5 @@ Route::get('/view-resume/{id}', function ($id) {
         ->header('Content-Type', 'application/pdf')
         ->header('Content-Disposition', 'inline; filename="'.str_replace(' ', '_', $application->first_name).'_resume.pdf"');
 })
-    ->middleware(EnsureAdminAuthenticated::class);
+    ->middleware(EnsureAdminAuthenticated::class)
+    ->name('view-resume');

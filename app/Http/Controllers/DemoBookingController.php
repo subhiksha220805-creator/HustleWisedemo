@@ -43,6 +43,6 @@ class DemoBookingController extends Controller
     {
         $demoBooking->delete();
 
-        return redirect()->route('view-data')->with('status', 'Demo booking deleted successfully.');
+        return redirect()->route('admin.demo-bookings.index')->with('success', 'Demo booking deleted successfully.');
     }
 }

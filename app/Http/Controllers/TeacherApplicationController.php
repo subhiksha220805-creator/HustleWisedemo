@@ -64,6 +64,6 @@ class TeacherApplicationController extends Controller
     {
         $teacherApplication->delete();
 
-        return redirect()->route('view-data')->with('status', 'Teacher application deleted successfully.');
+        return redirect()->route('admin.teacher-applications.index')->with('success', 'Teacher application deleted successfully.');
     }
 }

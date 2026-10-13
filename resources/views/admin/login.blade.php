@@ -2,7 +2,7 @@
 @section('title', 'Admin sign in')
 @section('body')
 <main class="login-wrap"><section class="panel login-card">
-    <div class="brand">Hustle<span>Wise</span></div>
+    <div class="brand d-flex align-items-center gap-2"><img src="{{ asset('logo.png') }}" alt="" width="38" height="38" style="object-fit:contain">Hustle<span>Wise</span></div>
     <h1>Welcome back</h1><p class="muted">Sign in to manage your courses.</p>
     @if ($errors->any())<div class="alert" style="background:#fff0ed;color:#a63b2d">{{ $errors->first() }}</div>@endif
     <form method="post" action="{{ route('admin.authenticate') }}">@csrf

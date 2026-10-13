@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $siteContent['teacher_meta_description'] }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Teach with HustleWise</title>
-    <link rel="icon" type="image/png" href="{{ secure_asset('logo.png') }}">
+    <title>Teach with {{ $siteContent['site_title'] }}</title>
+    <link rel="icon" type="image/png" href="{{ $siteContent['site_logo'] }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@
     <nav class="navbar navbar-expand-lg teacher-nav shadow-sm sticky-top">
         <div class="container py-2">
             <a class="teacher-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
-                <img src="{{ secure_asset('logo.png') }}" alt="HustleWise" height="46">
+                <img src="{{ $siteContent['site_logo'] }}" alt="HustleWise" height="46">
                 <span>Hustle<span>Wise</span></span>
             </a>
             <a href="{{ url('/') }}" class="btn btn-outline-secondary rounded-pill px-4">{{ $siteContent['teacher_back_home'] }}</a>
@@ -74,10 +74,10 @@
     <header class="teacher-hero">
         <div class="container"><div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <span class="badge rounded-pill px-3 py-2 mb-4" style="background:#fff0df;color:#e96e00">TEACH WITH HUSTLEWISE</span>
-                <h1>Help children find their <span>voice and confidence.</span></h1>
-                <p class="teacher-lead mt-4">Bring your knowledge, warmth and creativity to online classes that make learning meaningful. Get to know the role and apply to join our teaching community.</p>
-                <a class="btn btn-orange btn-lg rounded-pill px-4 mt-2" href="#teacher-application">Start your application <span aria-hidden="true">→</span></a>
+                <span class="badge rounded-pill px-3 py-2 mb-4" style="background:#fff0df;color:#e96e00">{{ $siteContent['teacher_page_badge'] }}</span>
+                <h1>{{ $siteContent['teacher_page_title'] }}</h1>
+                <p class="teacher-lead mt-4">{{ $siteContent['teacher_page_description'] }}</p>
+                <a class="btn btn-orange btn-lg rounded-pill px-4 mt-2" href="#teacher-application">{{ $siteContent['teacher_page_button'] }} <span aria-hidden="true">→</span></a>
             </div>
             <div class="col-lg-6"><div class="teacher-hero-photo"><img src="{{ $siteContent['teacher_page_image'] }}" alt="{{ $siteContent['teacher_page_image_alt'] }}"><span class="teacher-photo-note"><i class="bi bi-heart-fill me-2" style="color:#ff7a00"></i>{{ $siteContent['teacher_photo_caption'] }}</span></div></div>
 
